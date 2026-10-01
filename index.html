@@ -40,7 +40,7 @@
 <header class="site-header" id="cabecera">
   <div class="wrap header-inner">
     <a class="brand" href="#portada" aria-label="JR ATHLETICS — inicio">
-      <img src="logo-jr-blanco.png" alt="Logotipo de JR ATHLETICS" width="150" height="44" loading="lazy">
+      <span class="logo"><img src="logo-jr-blanco.png" alt="Logotipo de JR ATHLETICS" width="150" height="44" loading="lazy"><span class="logo-text" aria-hidden="true">JR <small>Athletics</small></span></span>
     </a>
 
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
@@ -306,7 +306,7 @@
       </header>
 
       <div class="contact">
-        <img class="contact-logo" src="logo-jr-blanco.png" alt="Logotipo de JR ATHLETICS" width="190" height="56" loading="lazy">
+        <span class="logo contact-logo"><img src="logo-jr-blanco.png" alt="Logotipo de JR ATHLETICS" width="190" height="56" loading="lazy"><span class="logo-text" aria-hidden="true">JR <small>Athletics</small></span></span>
 
         <ul class="contact-list">
           <li>
@@ -336,7 +336,7 @@
 <!-- ============ 8. PIE DE PÁGINA ============ -->
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <img class="footer-logo" src="logo-jr-negro.png" alt="Logotipo de JR ATHLETICS" width="150" height="44" loading="lazy">
+    <span class="logo footer-logo"><img src="logo-jr-negro.png" alt="Logotipo de JR ATHLETICS" width="150" height="44" loading="lazy"><span class="logo-text" aria-hidden="true">JR <small>Athletics</small></span></span>
     <p class="footer-legal">
       © <span id="year">2026</span> JR ATHLETICS · Marca registrada
     </p>
@@ -373,6 +373,13 @@
   /* ---------- Año del pie ---------- */
   var year = document.getElementById('year');
   if (year) { year.textContent = String(new Date().getFullYear()); }
+
+  /* ---------- Logos: si el PNG no carga, se muestra el texto JR ATHLETICS ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.logo img'), function (img) {
+    function missing() { img.parentNode.classList.add('is-missing'); }
+    if (img.complete && img.naturalWidth === 0) { missing(); }
+    else { img.addEventListener('error', missing); }
+  });
 
   /* ---------- Menú móvil ---------- */
   var header = document.getElementById('cabecera');
