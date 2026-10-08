@@ -1,0 +1,125 @@
+JR ATHLETICS · ARCHIVOS MULTIMEDIA
+==================================
+
+Sube cada archivo a su carpeta con el nombre EXACTO (minúsculas, sin espacios,
+sin tildes). La web ya está preparada para recibirlos.
+
+
+1. LISTA DE ARCHIVOS
+--------------------
+
+media/logo/
+  jr-logo-blanco.svg       Logo en blanco (cabecera, portada, contacto)
+  jr-logo-negro.svg        Logo en negro (pie, fondo crema)
+  logo-jr-blanco.png       PNG de respaldo
+  logo-jr-negro.png        PNG de respaldo (también lo usan los buscadores)
+
+media/hero/
+  hero-loop.mp4            Bucle de portada, horizontal
+  hero-loop-vertical.mp4   Bucle de portada, vertical (móvil)
+  hero-poster.jpg          Imagen de portada del bucle
+  (opcional) hero-poster-vertical.jpg   Póster vertical para móvil
+
+media/producto/
+  tx11-tres-cuartos.jpg
+  tx11-perfil.jpg
+  tx11-frontal.jpg
+
+media/detalles/
+  detalle-logo.jpg         Logo JR grabado en el respaldo
+  detalle-ribete.jpg       Ribetes en cian
+  detalle-pasador.jpg      Pasadores de seguridad
+  detalle-acolchado.jpg    Acolchado de alta densidad
+
+media/ajustes/
+  ajuste-plano.jpg
+  ajuste-inclinado.jpg
+  ajuste-predicador.jpg
+  ajuste-extension.jpg
+  ajuste-plegado.jpg
+
+media/video/
+  tx11-60s.mp4             Vídeo del producto (unos 60 s)
+  tx11-60s-poster.jpg      Imagen de portada del vídeo
+
+media/entreno/             (cada vídeo con su .jpg de portada del mismo nombre)
+  press-sentado-banda.mp4     + press-sentado-banda.jpg
+  remo-banda.mp4              + remo-banda.jpg
+  sentadilla-banco-banda.mp4  + sentadilla-banco-banda.jpg
+  pull-apart.mp4              + pull-apart.jpg
+  curl-sentado-banda.mp4      + curl-sentado-banda.jpg
+
+media/pack/
+  pack-completo.jpg        Foto cenital de todo el contenido de la caja
+  bandas-4.jpg             Las 4 bandas
+  bolsa-logo.jpg           Bolsa de transporte con el logo
+  manual.jpg               Manual de usuario en español
+  herramientas.jpg         Llave fija y tornillería
+
+media/marca/
+  tarjeta-lema.jpg         Tarjeta CORAJE | DISCIPLINA | SUPERACIÓN
+  cierre.jpg               Imagen de la llamada final
+
+media/og/
+  og-image.jpg             1200 x 630 px, para compartir en WhatsApp y redes.
+                           AHORA HAY UNA PROVISIONAL hecha con las fotos provisionales:
+                           sustitúyela con el mismo nombre.
+
+
+2. ESPECIFICACIONES DE ENTREGA
+------------------------------
+
+Fotos
+  - JPG en calidad máxima.
+  - 2400 px en el lado largo.
+  - Mismo tratamiento de color en todas: oscuro, contrastado, ligeramente desaturado.
+  - Sin textos ni logos añadidos encima.
+
+Bucles (portada y entreno)
+  - MP4 H.264 (WebM opcional), 1080p.
+  - 4–12 s, sin cortes (el final enlaza con el principio).
+  - SIN pista de audio.
+  - Menos de 8 MB cada uno.
+
+Vídeo de 60 s
+  - MP4 H.264, 1080p.
+  - Menos de 25 MB.
+
+
+3. QUÉ PASA AL SUBIR CADA ARCHIVO
+---------------------------------
+
+Automático (no hay que tocar el código):
+  - Logos SVG: en cuanto existen, sustituyen al texto "JR ATHLETICS".
+  - Vídeos .mp4 (portada, 60 s y entreno): en cuanto existen, se reproducen.
+    Mientras falten, se ve la imagen de portada.
+
+Manual (hay que cambiar la ruta en index.html):
+  - Las fotos .jpg. En index.html, cada foto provisional lleva encima un
+    comentario "PENDIENTE: sustituir por media/..." con el nombre exacto.
+    Cambia la ruta, quita class="is-prov" (es el filtro oscuro de las
+    provisionales) y listo.
+  - Cuando estén todas, se pueden borrar las fotos provisionales de la raíz
+    (banco-*.jpg, bandas-resistencia.jpg, caja-abierta.jpg, manual-espanol.jpg,
+    tarjeta-lema.jpg) y la carpeta media/provisional/.
+
+
+4. VERSIONES REDIMENSIONADAS (srcset)
+-------------------------------------
+
+Para que el móvil no descargue fotos de 2400 px, cada foto se usa en tres
+anchuras: nombre-800.jpg, nombre-1600.jpg y nombre-2400.jpg.
+Se generan solas con el script incluido (necesita Python 3 y Pillow):
+
+  pip install Pillow
+  python3 herramientas/preparar-imagenes.py media/producto/*.jpg
+
+En index.html, cada foto definitiva queda así (ejemplo):
+
+  <img src="media/producto/tx11-perfil-1600.jpg"
+       srcset="media/producto/tx11-perfil-800.jpg 800w,
+               media/producto/tx11-perfil-1600.jpg 1600w,
+               media/producto/tx11-perfil-2400.jpg 2400w"
+       sizes="..." width="2400" height="1600" alt="..." loading="lazy" decoding="async">
+
+(width y height: las medidas reales de la foto, para que nada salte al cargar.)
