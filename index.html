@@ -10,8 +10,8 @@
 
 <!-- Compartir (WhatsApp, Instagram, X…). Estas imágenes van con URL absoluta:
      es el único sitio de la web donde no se usa una ruta relativa.
-     PENDIENTE: media/og/og-image.jpg es una composición provisional hecha con las fotos
-     provisionales. Cuando llegue la definitiva (1200x630), sustitúyela con el mismo nombre. -->
+     media/og/og-image.jpg está hecha con la foto de frente y el logo oficial (1200x630).
+     Si cambias la imagen, mantén el mismo nombre y tamaño. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="JR ATHLETICS">
 <meta property="og:locale" content="es_ES">
@@ -21,18 +21,18 @@
 <meta property="og:image" content="https://jrathleticsfit.com/media/og/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="JR ATHLETICS y el banco de musculación regulable TX-11">
+<meta property="og:image:alt" content="Logo de JR ATHLETICS y el banco de musculación regulable TX-11 visto de frente">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="JR ATHLETICS · Banco de musculación regulable TX-11">
 <meta name="twitter:description" content="CORAJE | DISCIPLINA | SUPERACIÓN. Equipamiento premium para tu entrenamiento.">
 <meta name="twitter:image" content="https://jrathleticsfit.com/media/og/og-image.jpg">
 
-<!-- PENDIENTE: favicon provisional ("JR" en Inter). Regenerarlo a partir del logo oficial. -->
+<!-- Favicon: monograma del logo oficial (corona + JR). -->
 <link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <!-- Tipografía alojada en el propio sitio (sin Google Fonts). -->
-<link rel="preload" href="fonts/inter-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/inter-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 <script>
@@ -45,10 +45,7 @@
 </script>
 <script src="main.js" defer></script>
 
-<!-- Datos estructurados para buscadores. Sin precio ni valoraciones (no hay datos confirmados).
-     PENDIENTE: "logo" apunta a media/logo/logo-jr-negro.png, que aún no existe.
-     PENDIENTE: "image" usa la foto provisional banco-hero.jpg; cambiarla por
-     https://jrathleticsfit.com/media/producto/tx11-tres-cuartos.jpg cuando llegue. -->
+<!-- Datos estructurados para buscadores. Sin precio ni valoraciones (no hay datos confirmados). -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -67,7 +64,11 @@
       "model": "TX-11",
       "brand": { "@type": "Brand", "name": "JR ATHLETICS" },
       "manufacturer": { "@id": "https://jrathleticsfit.com/#organizacion" },
-      "image": ["https://jrathleticsfit.com/banco-hero.jpg"],
+      "image": [
+        "https://jrathleticsfit.com/media/producto/tx11-frontal.jpg",
+        "https://jrathleticsfit.com/media/producto/tx11-perfil.jpg",
+        "https://jrathleticsfit.com/media/pack/pack-completo.jpg"
+      ],
       "description": "Banco de musculación regulable TX-11. Respaldo regulable en 6 posiciones, uso en plano e inclinado, soporte predicador regulable en 3 alturas, accesorio frontal de extensión de piernas y estructura plegable. Soporta 300 kg de carga estática. Incluye 4 bandas elásticas de resistencia, bolsa de transporte, manual en español, llave fija y tornillería."
     }
   ]
@@ -85,10 +86,9 @@
   <div class="container header-bar">
     <a class="header-logo" href="#portada" aria-label="JR ATHLETICS, volver al inicio">
       <span class="logo logo--header">
-        <!-- El logo se carga solo cuando exista media/logo/jr-logo-blanco.svg.
-             Mientras falte, se ve el texto JR ATHLETICS (nunca un icono roto). -->
-        <img src="media/logo/jr-logo-blanco.svg" alt="" width="132" height="40" decoding="async"
-             onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <!-- Monograma del logo (corona + JR). Si el archivo faltara, se ve el texto JR ATHLETICS. -->
+        <img src="media/logo/jr-monograma-blanco.svg" alt="" width="52" height="38" decoding="async"
+             onerror="this.parentNode.classList.add('no-img');this.remove()">
         <span class="logo-text">JR ATHLETICS</span>
       </span>
     </a>
@@ -122,18 +122,13 @@
        ===================================================================== -->
   <section class="hero" id="portada" aria-label="Portada">
     <div class="hero-media" aria-hidden="true">
-      <!-- PENDIENTE: sustituir por media/hero/hero-poster.jpg (srcset -800/-1600/-2400) y quitar class="is-prov".
-           Opcional: una versión vertical del póster (hero-poster-vertical.jpg) para el <source> de móvil. -->
-      <picture>
-        <source media="(max-aspect-ratio: 4/5)"
-                srcset="media/provisional/banco-hero-vertical-800.jpg 800w, media/provisional/banco-hero-vertical-1125.jpg 1125w"
-                sizes="100vw" width="1125" height="2000">
-        <img class="hero-poster is-prov"
-             src="media/provisional/banco-hero-1200.jpg"
-             srcset="media/provisional/banco-hero-800.jpg 800w, media/provisional/banco-hero-1200.jpg 1200w, banco-hero.jpg 1500w"
-             sizes="100vw" width="1500" height="2000"
-             alt="" fetchpriority="high" decoding="async">
-      </picture>
+      <!-- Foto principal: el TX-11 de frente (media/producto/tx11-frontal.jpg).
+           Es también la imagen que se ve mientras no exista el vídeo de portada. -->
+      <img class="hero-poster"
+           src="media/producto/tx11-frontal.jpg"
+           srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
+           sizes="100vw" width="1096" height="1435"
+           alt="" fetchpriority="high" decoding="async">
       <!-- Vídeo en bucle: main.js lo carga solo si existe el archivo, después de la imagen,
            y nunca con "reducir movimiento" o "ahorro de datos". En móvil vertical prueba
            primero la versión vertical. -->
@@ -148,8 +143,9 @@
 
     <div class="hero-content">
       <h1 class="logo logo--hero">
-        <img src="media/logo/jr-logo-blanco.svg" alt="" width="460" height="384" decoding="async"
-             onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <!-- Logo oficial en vectorial (media/logo/jr-logo-blanco.svg) -->
+        <img src="media/logo/jr-logo-blanco.svg" alt="" width="460" height="405" decoding="async"
+             onerror="this.parentNode.classList.add('no-img');this.remove()">
         <span class="logo-text"><span class="logo-jr">JR</span> <span class="logo-athletics">Athletics</span></span>
         <span class="sr-only">, banco de musculación regulable TX-11</span>
       </h1>
@@ -186,15 +182,23 @@
        3. TX-11
        ===================================================================== -->
   <section class="tx11" id="tx11" aria-labelledby="tx11-titulo">
-    <figure class="bleed tx11-media">
-      <!-- PENDIENTE: sustituir por media/producto/tx11-tres-cuartos.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-      <img class="is-prov" style="object-position: 50% 66%"
-           src="media/provisional/banco-hero-1200.jpg"
-           srcset="media/provisional/banco-hero-800.jpg 800w, media/provisional/banco-hero-1200.jpg 1200w, banco-hero.jpg 1500w"
-           sizes="100vw" width="1500" height="2000"
-           alt="Banco de musculación regulable TX-11 de JR ATHLETICS visto de tres cuartos, con el respaldo inclinado y el soporte predicador"
-           loading="lazy" decoding="async">
-    </figure>
+    <!-- Foto principal a sangre: el TX-11 de frente. En escritorio la acompaña la foto de perfil. -->
+    <div class="tx11-media">
+      <figure class="tx11-shot">
+        <img src="media/producto/tx11-frontal.jpg"
+             srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
+             sizes="(min-width: 1024px) 50vw, 100vw" width="1096" height="1435"
+             alt="Banco de musculación regulable TX-11 de JR ATHLETICS visto de frente, con el logo JR en el respaldo y el soporte predicador, en una sala con vistas al mar"
+             loading="lazy" decoding="async">
+      </figure>
+      <figure class="tx11-shot tx11-shot--side">
+        <img src="media/producto/tx11-perfil.jpg"
+             srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil.jpg 1096w"
+             sizes="50vw" width="1096" height="1435"
+             alt="TX-11 de perfil, con el respaldo inclinado, el asiento con ribete cian, el soporte predicador y los rodillos de extensión de piernas"
+             loading="lazy" decoding="async">
+      </figure>
+    </div>
 
     <div class="container grid tx11-body">
       <h2 class="tx11-title reveal" id="tx11-titulo">
@@ -206,29 +210,6 @@
         <!-- ENLACE DE AMAZON: pega aquí la URL de la ficha -->
         <a class="btn btn--cyan" href="#" data-amazon>Comprar en Amazon</a>
       </div>
-    </div>
-
-    <div class="container grid tx11-views">
-      <figure class="tx11-view reveal">
-        <!-- PENDIENTE: sustituir por media/producto/tx11-perfil.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-        <img class="is-prov"
-             src="media/provisional/banco-perfil-800.jpg"
-             srcset="media/provisional/banco-perfil-800.jpg 800w, banco-perfil.jpg 1200w"
-             sizes="(min-width: 1440px) 656px, (min-width: 1024px) 46vw, 50vw" width="1200" height="1600"
-             alt="TX-11 de perfil: respaldo inclinado, asiento, soporte predicador y rodillos de extensión de piernas"
-             loading="lazy" decoding="async">
-        <figcaption>Perfil</figcaption>
-      </figure>
-      <figure class="tx11-view reveal" style="--d: 120ms">
-        <!-- PENDIENTE: sustituir por media/producto/tx11-frontal.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-        <img class="is-prov"
-             src="media/provisional/banco-frontal-800.jpg"
-             srcset="media/provisional/banco-frontal-800.jpg 800w, banco-frontal.jpg 1200w"
-             sizes="(min-width: 1440px) 656px, (min-width: 1024px) 46vw, 50vw" width="1200" height="1600"
-             alt="TX-11 de frente, con el logo JR en el respaldo y la almohadilla del predicador"
-             loading="lazy" decoding="async">
-        <figcaption>Frente</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -246,33 +227,33 @@
       <ul class="grid details-grid" role="list">
         <li class="detail reveal">
           <figure>
-            <!-- PENDIENTE: sustituir por media/detalles/detalle-logo.jpg (srcset -800/-1600) y quitar class="is-prov" -->
-            <div class="detail-img"><img class="is-prov" src="media/provisional/detalle-logo.jpg" width="280" height="350"
-                 alt="Primer plano del logo JR grabado en la parte alta del respaldo" loading="lazy" decoding="async"></div>
+            <!-- Relleno: recorte de la foto de frente. PENDIENTE (opcional): foto específica media/detalles/detalle-logo.jpg -->
+            <div class="detail-img"><img src="media/relleno/detalle-logo.jpg" width="240" height="300"
+                 alt="Primer plano del logo JR grabado en la parte alta del respaldo, con el ribete cian" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">01</span> Logo JR grabado en el respaldo</figcaption>
           </figure>
         </li>
         <li class="detail reveal" style="--d: 100ms">
           <figure>
-            <!-- PENDIENTE: sustituir por media/detalles/detalle-ribete.jpg (srcset -800/-1600) y quitar class="is-prov" -->
-            <div class="detail-img"><img class="is-prov" src="media/provisional/detalle-ribete.jpg" width="560" height="700"
-                 alt="Primer plano del asiento con el ribete en cian a lo largo del borde" loading="lazy" decoding="async"></div>
+            <!-- Relleno: recorte de la foto de perfil. PENDIENTE (opcional): foto específica media/detalles/detalle-ribete.jpg -->
+            <div class="detail-img"><img src="media/relleno/detalle-ribete.jpg" width="320" height="400"
+                 alt="Primer plano del asiento y el respaldo con el ribete en cian a lo largo del borde" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">02</span> Ribetes en cian</figcaption>
           </figure>
         </li>
         <li class="detail reveal" style="--d: 200ms">
           <figure>
-            <!-- PENDIENTE: sustituir por media/detalles/detalle-pasador.jpg (srcset -800/-1600) y quitar class="is-prov" -->
-            <div class="detail-img"><img class="is-prov" src="media/provisional/detalle-pasador.jpg" width="304" height="380"
+            <!-- Relleno: recorte de la foto del pack. PENDIENTE (opcional): foto específica media/detalles/detalle-pasador.jpg -->
+            <div class="detail-img"><img src="media/relleno/detalle-pasador.jpg" width="300" height="375"
                  alt="Pasadores de seguridad con anilla, junto a la tornillería del banco" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">03</span> Pasadores de seguridad</figcaption>
           </figure>
         </li>
         <li class="detail reveal" style="--d: 300ms">
           <figure>
-            <!-- PENDIENTE: sustituir por media/detalles/detalle-acolchado.jpg (srcset -800/-1600) y quitar class="is-prov" -->
-            <div class="detail-img"><img class="is-prov" src="media/provisional/detalle-acolchado.jpg" width="440" height="550"
-                 alt="Asiento y almohadilla del predicador con acolchado de alta densidad" loading="lazy" decoding="async"></div>
+            <!-- Relleno: recorte de la foto de frente. PENDIENTE (opcional): foto específica media/detalles/detalle-acolchado.jpg -->
+            <div class="detail-img"><img src="media/relleno/detalle-acolchado.jpg" width="300" height="375"
+                 alt="Almohadilla del predicador y asiento con acolchado de alta densidad" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">04</span> Acolchado de alta densidad</figcaption>
           </figure>
         </li>
@@ -304,11 +285,11 @@
         <div class="versa-track" data-versa-track>
           <article class="versa-card is-active" id="ajuste-plano" data-versa-card="plano" aria-labelledby="ajuste-plano-t">
             <div class="versa-img">
-              <!-- PENDIENTE: sustituir por media/ajustes/ajuste-plano.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-              <img class="is-prov" style="object-position: 50% 62%" src="media/provisional/banco-perfil-800.jpg"
-                   srcset="media/provisional/banco-perfil-800.jpg 800w, banco-perfil.jpg 1200w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="1600"
-                   alt="TX-11 de perfil, con el respaldo y el asiento a la vista" loading="lazy" decoding="async">
+              <!-- Relleno: foto de perfil. PENDIENTE (opcional): media/ajustes/ajuste-plano.jpg -->
+              <img style="object-position: 50% 72%" src="media/producto/tx11-perfil-800.jpg"
+                   srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil.jpg 1096w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="1096" height="1435"
+                   alt="TX-11 de perfil, con el asiento y el respaldo a la vista" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">01</span>
@@ -319,11 +300,10 @@
 
           <article class="versa-card" id="ajuste-inclinado" data-versa-card="inclinado" aria-labelledby="ajuste-inclinado-t">
             <div class="versa-img">
-              <!-- PENDIENTE: sustituir por media/ajustes/ajuste-inclinado.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-              <img class="is-prov" style="object-position: 40% 55%" src="media/provisional/banco-hero-800.jpg"
-                   srcset="media/provisional/banco-hero-800.jpg 800w, media/provisional/banco-hero-1200.jpg 1200w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="1600"
-                   alt="TX-11 con el respaldo inclinado" loading="lazy" decoding="async">
+              <!-- Relleno: recorte de la foto de perfil. PENDIENTE (opcional): media/ajustes/ajuste-inclinado.jpg -->
+              <img style="object-position: 55% 50%" src="media/relleno/ajuste-inclinado.jpg"
+                   width="796" height="795"
+                   alt="Respaldo del TX-11 inclinado, visto de perfil" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">02</span>
@@ -334,10 +314,10 @@
 
           <article class="versa-card" id="ajuste-predicador" data-versa-card="predicador" aria-labelledby="ajuste-predicador-t">
             <div class="versa-img">
-              <!-- PENDIENTE: sustituir por media/ajustes/ajuste-predicador.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-              <img class="is-prov" style="object-position: 50% 45%" src="media/provisional/banco-frontal-800.jpg"
-                   srcset="media/provisional/banco-frontal-800.jpg 800w, banco-frontal.jpg 1200w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="1600"
+              <!-- Relleno: foto de frente. PENDIENTE (opcional): media/ajustes/ajuste-predicador.jpg -->
+              <img style="object-position: 50% 50%" src="media/producto/tx11-frontal-800.jpg"
+                   srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="1096" height="1435"
                    alt="Almohadilla del soporte predicador vista de frente" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
@@ -349,9 +329,9 @@
 
           <article class="versa-card" id="ajuste-extension" data-versa-card="extension" aria-labelledby="ajuste-extension-t">
             <div class="versa-img">
-              <!-- PENDIENTE: sustituir por media/ajustes/ajuste-extension.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-              <img class="is-prov" style="object-position: 50% 60%" src="media/provisional/ajuste-extension.jpg"
-                   width="560" height="700"
+              <!-- Relleno: recorte de la foto de perfil. PENDIENTE (opcional): media/ajustes/ajuste-extension.jpg -->
+              <img style="object-position: 50% 60%" src="media/relleno/ajuste-extension.jpg"
+                   width="460" height="575"
                    alt="Accesorio frontal de extensión de piernas con sus rodillos" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
@@ -363,9 +343,9 @@
 
           <article class="versa-card" id="ajuste-plegado" data-versa-card="plegado" aria-labelledby="ajuste-plegado-t">
             <div class="versa-img">
-              <!-- PENDIENTE: sustituir por media/ajustes/ajuste-plegado.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-              <img class="is-prov" style="object-position: 50% 50%" src="media/provisional/ajuste-plegado.jpg"
-                   width="1300" height="580"
+              <!-- Relleno: recorte de la foto del pack. PENDIENTE (opcional): media/ajustes/ajuste-plegado.jpg -->
+              <img style="object-position: 50% 50%" src="media/relleno/ajuste-plegado.jpg"
+                   width="810" height="500"
                    alt="TX-11 con la estructura plegada" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
@@ -387,11 +367,11 @@
        ===================================================================== -->
   <section class="film" id="video" aria-labelledby="film-titulo">
     <div class="film-frame">
-      <!-- PENDIENTE: sustituir por media/video/tx11-60s-poster.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-      <img class="film-poster is-prov" style="object-position: 50% 42%"
-           src="media/provisional/banco-frontal-800.jpg"
-           srcset="media/provisional/banco-frontal-800.jpg 800w, banco-frontal.jpg 1200w"
-           sizes="100vw" width="1200" height="1600"
+      <!-- Relleno: foto de perfil. PENDIENTE (opcional): póster del vídeo media/video/tx11-60s-poster.jpg -->
+      <img class="film-poster" style="object-position: 50% 64%"
+           src="media/producto/tx11-perfil.jpg"
+           srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil.jpg 1096w"
+           sizes="100vw" width="1096" height="1435"
            alt="" loading="lazy" decoding="async">
       <div class="film-veil" aria-hidden="true"></div>
       <div class="film-content container">
@@ -433,9 +413,9 @@
       <li class="loop reveal">
         <figure>
           <div class="loop-media">
-            <!-- PENDIENTE: portada media/entreno/press-sentado-banda.jpg; mientras, foto provisional -->
-            <img class="is-prov" style="object-position: 68% 50%" src="media/provisional/banco-perfil-800.jpg" width="800" height="1067"
-                 alt="Banco TX-11 con el respaldo inclinado, preparado para press de hombro sentado con banda" loading="lazy" decoding="async">
+            <!-- Relleno: foto de perfil. PENDIENTE: portada media/entreno/press-sentado-banda.jpg y su vídeo .mp4 -->
+            <img style="object-position: 62% 62%" src="media/producto/tx11-perfil-800.jpg" width="800" height="1047"
+                 alt="TX-11 de perfil, con el respaldo inclinado" loading="lazy" decoding="async">
             <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/press-sentado-banda.mp4"></video>
           </div>
           <figcaption>Press de hombro sentado con banda</figcaption>
@@ -444,9 +424,9 @@
       <li class="loop reveal" style="--d: 80ms">
         <figure>
           <div class="loop-media">
-            <!-- PENDIENTE: portada media/entreno/remo-banda.jpg; mientras, foto provisional -->
-            <img class="is-prov" style="object-position: 26% 50%" src="media/provisional/bandas-resistencia-800.jpg" width="800" height="600"
-                 alt="Bandas elásticas de resistencia para el remo a una mano" loading="lazy" decoding="async">
+            <!-- Relleno: foto del pack. PENDIENTE: portada media/entreno/remo-banda.jpg y su vídeo .mp4 -->
+            <img style="object-position: 50% 72%" src="media/pack/pack-completo-800.jpg" width="800" height="1047"
+                 alt="Contenido de la caja del TX-11 con las cuatro bandas de resistencia" loading="lazy" decoding="async">
             <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/remo-banda.mp4"></video>
           </div>
           <figcaption>Remo a una mano con banda</figcaption>
@@ -455,9 +435,9 @@
       <li class="loop reveal" style="--d: 160ms">
         <figure>
           <div class="loop-media">
-            <!-- PENDIENTE: portada media/entreno/sentadilla-banco-banda.jpg; mientras, foto provisional -->
-            <img class="is-prov" style="object-position: 50% 62%" src="media/provisional/banco-frontal-800.jpg" width="800" height="1067"
-                 alt="Banco TX-11 de frente, para la sentadilla al banco con banda" loading="lazy" decoding="async">
+            <!-- Relleno: foto de frente. PENDIENTE: portada media/entreno/sentadilla-banco-banda.jpg y su vídeo .mp4 -->
+            <img style="object-position: 50% 62%" src="media/producto/tx11-frontal-800.jpg" width="800" height="1047"
+                 alt="TX-11 de frente, con la base y el reposapiés" loading="lazy" decoding="async">
             <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/sentadilla-banco-banda.mp4"></video>
           </div>
           <figcaption>Sentadilla al banco con banda</figcaption>
@@ -466,9 +446,9 @@
       <li class="loop reveal" style="--d: 240ms">
         <figure>
           <div class="loop-media">
-            <!-- PENDIENTE: portada media/entreno/pull-apart.jpg; mientras, foto provisional -->
-            <img class="is-prov" style="object-position: 30% 85%" src="media/provisional/bandas-resistencia-800.jpg" width="800" height="600"
-                 alt="Bandas elásticas roja y morada para la separación de banda" loading="lazy" decoding="async">
+            <!-- Relleno: recorte de la foto del pack. PENDIENTE: portada media/entreno/pull-apart.jpg y su vídeo .mp4 -->
+            <img style="object-position: 50% 50%" src="media/relleno/entreno-pull-apart.jpg" width="640" height="575"
+                 alt="Rodillos, barra azul y bolsa de transporte con el logo JR ATHLETICS" loading="lazy" decoding="async">
             <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/pull-apart.mp4"></video>
           </div>
           <figcaption>Separación de banda</figcaption>
@@ -477,9 +457,9 @@
       <li class="loop reveal" style="--d: 320ms">
         <figure>
           <div class="loop-media">
-            <!-- PENDIENTE: portada media/entreno/curl-sentado-banda.jpg; mientras, foto provisional -->
-            <img class="is-prov" style="object-position: 62% 52%" src="media/provisional/banco-hero-800.jpg" width="800" height="1067"
-                 alt="Asiento y soporte predicador del TX-11, para el curl sentado con banda" loading="lazy" decoding="async">
+            <!-- Relleno: recorte de la foto de frente. PENDIENTE: portada media/entreno/curl-sentado-banda.jpg y su vídeo .mp4 -->
+            <img style="object-position: 50% 40%" src="media/relleno/entreno-curl.jpg" width="600" height="750"
+                 alt="Almohadilla del predicador y empuñaduras del TX-11 vistas de frente" loading="lazy" decoding="async">
             <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/curl-sentado-banda.mp4"></video>
           </div>
           <figcaption>Curl sentado con banda</figcaption>
@@ -500,11 +480,10 @@
       </header>
 
       <figure class="pack-hero reveal">
-        <!-- PENDIENTE: sustituir por media/pack/pack-completo.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-        <img class="is-prov" src="media/provisional/banco-despiece-1200.jpg"
-             srcset="media/provisional/banco-despiece-800.jpg 800w, media/provisional/banco-despiece-1200.jpg 1200w, banco-despiece.jpg 1800w"
-             sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 100vw" width="1800" height="1350"
-             alt="Vista cenital del contenido de la caja: el banco plegado, sus piezas, las bandas, el manual, la bolsa de herramientas y la tornillería"
+        <img src="media/pack/pack-completo.jpg"
+             srcset="media/pack/pack-completo-800.jpg 800w, media/pack/pack-completo.jpg 1096w"
+             sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 100vw" width="1096" height="1435"
+             alt="Todo el contenido de la caja del TX-11 colocado en el suelo: el banco plegado y sus piezas, las cuatro bandas, la bolsa con el logo JR ATHLETICS, el manual, las herramientas y la tornillería"
              loading="lazy" decoding="async">
       </figure>
 
@@ -513,28 +492,27 @@
         <ol class="pack-list" data-lista="pack"></ol>
       </div>
 
+      <!-- Relleno: recortes de la foto del pack.
+           PENDIENTE (opcional): media/pack/bolsa-logo.jpg, bandas-4.jpg y herramientas.jpg -->
       <ul class="pack-thumbs" role="list">
         <li class="reveal">
           <figure>
-            <!-- PENDIENTE: sustituir por media/pack/bolsa-logo.jpg y quitar class="is-prov" -->
-            <img class="is-prov" src="media/provisional/pack-bolsa.jpg" width="520" height="850"
+            <img src="media/relleno/pack-bolsa.jpg" width="220" height="275"
                  alt="Bolsa de transporte de las bandas con el logo JR ATHLETICS" loading="lazy" decoding="async">
             <figcaption>Bolsa con logo</figcaption>
           </figure>
         </li>
         <li class="reveal" style="--d: 100ms">
           <figure>
-            <!-- PENDIENTE: sustituir por media/pack/manual.jpg y quitar class="is-prov" -->
-            <img class="is-prov" src="media/provisional/manual-espanol-800.jpg" width="800" height="1067"
-                 alt="Portada del manual de usuario del banco TX-11, impreso en español" loading="lazy" decoding="async">
-            <figcaption>Manual en español</figcaption>
+            <img src="media/relleno/pack-bandas.jpg" width="270" height="338"
+                 alt="Las cuatro bandas elásticas de resistencia en sus fundas: amarilla, negra, morada y roja" loading="lazy" decoding="async">
+            <figcaption><span data-cifra="bandas">4</span>&nbsp;bandas</figcaption>
           </figure>
         </li>
         <li class="reveal" style="--d: 200ms">
           <figure>
-            <!-- PENDIENTE: sustituir por media/pack/herramientas.jpg y quitar class="is-prov" -->
-            <img class="is-prov" src="media/provisional/pack-herramientas.jpg" width="600" height="350"
-                 alt="Llave fija, tornillería y pasadores para el montaje" loading="lazy" decoding="async">
+            <img src="media/relleno/pack-herramientas.jpg" width="270" height="335"
+                 alt="Llaves, tornillería y pasadores para el montaje" loading="lazy" decoding="async">
             <figcaption>Llave y tornillería</figcaption>
           </figure>
         </li>
@@ -556,21 +534,12 @@
       </header>
 
       <div class="grid bands-layout">
-        <figure class="bands-img reveal">
-          <!-- PENDIENTE: sustituir por media/pack/bandas-4.jpg (srcset -800/-1600) y quitar class="is-prov" -->
-          <img class="is-prov" src="media/provisional/bandas-resistencia-800.jpg"
-               srcset="media/provisional/bandas-resistencia-800.jpg 800w, bandas-resistencia.jpg 1600w"
-               sizes="(min-width: 1440px) 656px, (min-width: 1024px) 46vw, 100vw" width="1600" height="1200"
-               alt="Las cuatro bandas elásticas de resistencia, amarilla, negra, morada y roja, junto a su bolsa con el logo JR ATHLETICS"
-               loading="lazy" decoding="async">
-        </figure>
-
-        <div class="bands-info reveal" style="--d: 120ms">
+        <div class="bands-head reveal">
           <h3 class="h3"><span data-cifra="bandas">4</span>&nbsp;bandas. <span data-cifra="bandas">4</span>&nbsp;resistencias.</h3>
-          <!-- Se genera desde main.js (DATOS.bandas). -->
-          <ul class="swatches" data-lista="bandas" role="list"></ul>
           <p class="bands-note"><span data-cifra="bandas">4</span>&nbsp;bandas de resistencia incluidas.</p>
         </div>
+        <!-- Se genera desde main.js (DATOS.bandas). -->
+        <ul class="swatches reveal" style="--d: 120ms" data-lista="bandas" role="list"></ul>
       </div>
 
       <ol class="steps grid" role="list">
@@ -632,13 +601,11 @@
        ===================================================================== -->
   <section class="brand section" id="marca" aria-labelledby="marca-titulo">
     <div class="container grid brand-layout">
-      <figure class="brand-img reveal">
-        <!-- PENDIENTE: sustituir por media/marca/tarjeta-lema.jpg (srcset -800/-1600) y quitar class="is-prov" -->
-        <img class="is-prov" src="media/provisional/tarjeta-lema-800.jpg"
-             srcset="media/provisional/tarjeta-lema-800.jpg 800w, tarjeta-lema.jpg 1600w"
-             sizes="(min-width: 1440px) 656px, (min-width: 1024px) 46vw, 100vw" width="1600" height="1200"
-             alt="Tarjeta de JR ATHLETICS que va en la caja, con el lema Coraje, Disciplina, Superación"
-             loading="lazy" decoding="async">
+      <!-- La tarjeta de la marca: logo oficial en negro sobre crema, como la tarjeta de la caja.
+           PENDIENTE (opcional): si prefieres una foto, media/marca/tarjeta-lema.jpg -->
+      <figure class="brand-card reveal">
+        <img src="media/logo/jr-logo-negro.svg" alt="Logo de JR ATHLETICS" width="1805" height="1590" loading="lazy" decoding="async">
+        <figcaption class="brand-card-motto">Coraje <span aria-hidden="true">|</span> Disciplina <span aria-hidden="true">|</span> Superación</figcaption>
       </figure>
 
       <div class="brand-copy reveal" style="--d: 120ms">
@@ -708,10 +675,10 @@
        ===================================================================== -->
   <section class="final" id="comprar" aria-labelledby="final-titulo">
     <div class="final-media" aria-hidden="true">
-      <!-- PENDIENTE: sustituir por media/marca/cierre.jpg (srcset -800/-1600/-2400) y quitar class="is-prov" -->
-      <img class="is-prov" style="object-position: 50% 58%" src="media/provisional/banco-perfil-800.jpg"
-           srcset="media/provisional/banco-perfil-800.jpg 800w, banco-perfil.jpg 1200w"
-           sizes="100vw" width="1200" height="1600" alt="" loading="lazy" decoding="async">
+      <!-- Relleno: foto de frente. PENDIENTE (opcional): media/marca/cierre.jpg -->
+      <img src="media/producto/tx11-frontal.jpg"
+           srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
+           sizes="100vw" width="1096" height="1435" alt="" loading="lazy" decoding="async">
     </div>
     <div class="final-veil" aria-hidden="true"></div>
     <div class="wedge wedge--navy" aria-hidden="true"></div>
@@ -733,8 +700,8 @@
   <section class="contact section" id="contacto" aria-labelledby="contacto-titulo">
     <div class="container contact-inner">
       <span class="logo logo--contact reveal">
-        <img src="media/logo/jr-logo-blanco.svg" alt="" width="200" height="167" loading="lazy" decoding="async"
-             onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+        <img src="media/logo/jr-logo-blanco.svg" alt="" width="220" height="194" loading="lazy" decoding="async"
+             onerror="this.parentNode.classList.add('no-img');this.remove()">
         <span class="logo-text"><span class="logo-jr">JR</span> <span class="logo-athletics">Athletics</span></span>
       </span>
       <h2 class="eyebrow reveal" id="contacto-titulo">Contacto</h2>
@@ -775,8 +742,8 @@
 <footer class="site-footer" data-footer>
   <div class="container footer-inner">
     <span class="logo logo--footer">
-      <img src="media/logo/jr-logo-negro.svg" alt="" width="120" height="100" loading="lazy" decoding="async"
-           onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">
+      <img src="media/logo/jr-monograma-negro.svg" alt="" width="54" height="40" loading="lazy" decoding="async"
+           onerror="this.parentNode.classList.add('no-img');this.remove()">
       <span class="logo-text">JR ATHLETICS</span>
     </span>
     <p class="footer-legal">© <span data-year>2026</span> JR ATHLETICS · Marca registrada</p>

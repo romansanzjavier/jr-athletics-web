@@ -8,62 +8,63 @@ sin tildes). La web ya está preparada para recibirlos.
 1. LISTA DE ARCHIVOS
 --------------------
 
+[YA] = ya está en la web.   [FALTA] = todavía no existe.   (opcional) = mejora, no imprescindible.
+
 media/logo/
-  jr-logo-blanco.svg       Logo en blanco (cabecera, portada, contacto)
-  jr-logo-negro.svg        Logo en negro (pie, fondo crema)
-  logo-jr-blanco.png       PNG de respaldo
-  logo-jr-negro.png        PNG de respaldo (también lo usan los buscadores)
+  [YA] jr-logo-blanco.svg       Logo completo en crema (portada y contacto)
+  [YA] jr-logo-negro.svg        Logo completo en negro (tarjeta de La marca)
+  [YA] jr-monograma-blanco.svg  Corona + JR (cabecera)
+  [YA] jr-monograma-negro.svg   Corona + JR (pie)
+  [YA] logo-jr-blanco.png       PNG de respaldo (1200 px, fondo transparente)
+  [YA] logo-jr-negro.png        PNG de respaldo (lo usan los buscadores)
+  Todos salen del PDF vectorial del logo. El favicon (favicon.svg, favicon.ico y
+  apple-touch-icon.png, en la raíz) es el monograma sobre fondo casi negro.
 
 media/hero/
-  hero-loop.mp4            Bucle de portada, horizontal
-  hero-loop-vertical.mp4   Bucle de portada, vertical (móvil)
-  hero-poster.jpg          Imagen de portada del bucle
-  (opcional) hero-poster-vertical.jpg   Póster vertical para móvil
+  [FALTA] hero-loop.mp4            Bucle de portada, horizontal
+  [FALTA] hero-loop-vertical.mp4   Bucle de portada, vertical (móvil)
+  (opcional) hero-poster.jpg       Ahora la portada usa media/producto/tx11-frontal.jpg
 
 media/producto/
-  tx11-tres-cuartos.jpg
-  tx11-perfil.jpg
-  tx11-frontal.jpg
+  [YA] tx11-frontal.jpg      Foto principal: portada, TX-11 y llamada final
+  [YA] tx11-perfil.jpg       TX-11 (escritorio), versatilidad, vídeo y entreno
+  (opcional) tx11-tres-cuartos.jpg
 
-media/detalles/
-  detalle-logo.jpg         Logo JR grabado en el respaldo
-  detalle-ribete.jpg       Ribetes en cian
-  detalle-pasador.jpg      Pasadores de seguridad
-  detalle-acolchado.jpg    Acolchado de alta densidad
+media/detalles/            (ahora: recortes de las fotos en media/relleno/)
+  (opcional) detalle-logo.jpg, detalle-ribete.jpg, detalle-pasador.jpg, detalle-acolchado.jpg
 
-media/ajustes/
-  ajuste-plano.jpg
-  ajuste-inclinado.jpg
-  ajuste-predicador.jpg
-  ajuste-extension.jpg
-  ajuste-plegado.jpg
+media/ajustes/             (ahora: fotos de perfil y frente, y recortes)
+  (opcional) ajuste-plano.jpg, ajuste-inclinado.jpg, ajuste-predicador.jpg,
+             ajuste-extension.jpg, ajuste-plegado.jpg
 
 media/video/
-  tx11-60s.mp4             Vídeo del producto (unos 60 s)
-  tx11-60s-poster.jpg      Imagen de portada del vídeo
+  [FALTA] tx11-60s.mp4             Vídeo del producto (unos 60 s)
+  (opcional) tx11-60s-poster.jpg   Ahora se usa la foto de perfil
 
 media/entreno/             (cada vídeo con su .jpg de portada del mismo nombre)
-  press-sentado-banda.mp4     + press-sentado-banda.jpg
-  remo-banda.mp4              + remo-banda.jpg
-  sentadilla-banco-banda.mp4  + sentadilla-banco-banda.jpg
-  pull-apart.mp4              + pull-apart.jpg
-  curl-sentado-banda.mp4      + curl-sentado-banda.jpg
+  [FALTA] press-sentado-banda.mp4     + press-sentado-banda.jpg
+  [FALTA] remo-banda.mp4              + remo-banda.jpg
+  [FALTA] sentadilla-banco-banda.mp4  + sentadilla-banco-banda.jpg
+  [FALTA] pull-apart.mp4              + pull-apart.jpg
+  [FALTA] curl-sentado-banda.mp4      + curl-sentado-banda.jpg
 
 media/pack/
-  pack-completo.jpg        Foto cenital de todo el contenido de la caja
-  bandas-4.jpg             Las 4 bandas
-  bolsa-logo.jpg           Bolsa de transporte con el logo
-  manual.jpg               Manual de usuario en español
-  herramientas.jpg         Llave fija y tornillería
+  [YA] pack-completo.jpg     Foto cenital de todo el contenido de la caja
+  (opcional) bandas-4.jpg, bolsa-logo.jpg, manual.jpg, herramientas.jpg
+             (ahora: recortes de pack-completo.jpg en media/relleno/)
 
 media/marca/
-  tarjeta-lema.jpg         Tarjeta CORAJE | DISCIPLINA | SUPERACIÓN
-  cierre.jpg               Imagen de la llamada final
+  (opcional) tarjeta-lema.jpg   Ahora La marca muestra el logo vectorial sobre crema
+  (opcional) cierre.jpg         Ahora la llamada final usa la foto de frente
 
 media/og/
-  og-image.jpg             1200 x 630 px, para compartir en WhatsApp y redes.
-                           AHORA HAY UNA PROVISIONAL hecha con las fotos provisionales:
-                           sustitúyela con el mismo nombre.
+  [YA] og-image.jpg          1200 x 630 px, hecha con la foto de frente y el logo.
+
+media/relleno/
+  Recortes de las tres fotos (frente, perfil y pack) que rellenan los huecos de
+  detalles, ajustes, entreno y pack hasta que haya fotos específicas. Cuando
+  llegue una foto específica, se cambia la ruta en index.html (cada hueco lleva
+  un comentario "Relleno: ... PENDIENTE (opcional): media/...").
 
 
 2. ESPECIFICACIONES DE ENTREGA
@@ -90,18 +91,12 @@ Vídeo de 60 s
 ---------------------------------
 
 Automático (no hay que tocar el código):
-  - Logos SVG: en cuanto existen, sustituyen al texto "JR ATHLETICS".
   - Vídeos .mp4 (portada, 60 s y entreno): en cuanto existen, se reproducen.
-    Mientras falten, se ve la imagen de portada.
+    Mientras falten, se ve la foto de portada de cada hueco.
 
 Manual (hay que cambiar la ruta en index.html):
-  - Las fotos .jpg. En index.html, cada foto provisional lleva encima un
-    comentario "PENDIENTE: sustituir por media/..." con el nombre exacto.
-    Cambia la ruta, quita class="is-prov" (es el filtro oscuro de las
-    provisionales) y listo.
-  - Cuando estén todas, se pueden borrar las fotos provisionales de la raíz
-    (banco-*.jpg, bandas-resistencia.jpg, caja-abierta.jpg, manual-espanol.jpg,
-    tarjeta-lema.jpg) y la carpeta media/provisional/.
+  - Las fotos .jpg. Cada hueco lleva encima un comentario con el nombre exacto
+    de la foto específica que puede ir ahí.
 
 
 4. VERSIONES REDIMENSIONADAS (srcset)

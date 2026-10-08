@@ -54,8 +54,8 @@
   --cream-3: rgba(241, 238, 232, 0.58);   /* texto terciario */
   --line: rgba(241, 238, 232, 0.14);      /* líneas finas */
 
-  /* Proporción del logo oficial (ancho / alto). Ajústala cuando llegue el SVG. */
-  --logo-ratio: 6 / 5;
+  /* Proporción del logo oficial completo (ancho / alto del SVG) */
+  --logo-ratio: 1805 / 1590;
 
   /* Tipografía */
   --font: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -133,10 +133,6 @@ a { color: inherit; }
   outline: 2px solid var(--cyan);
   outline-offset: 3px;
 }
-
-/* Fotos provisionales: tratamiento común (oscuro, contrastado, algo desaturado).
-   Quita la clase "is-prov" cuando pongas la foto definitiva. */
-.is-prov { filter: saturate(0.8) brightness(0.8) contrast(1.06); }
 
 
 /* 4. UTILIDADES Y REJILLA -------------------------------------------------- */
@@ -271,49 +267,43 @@ a { color: inherit; }
 
 
 /* 6. LOGO ------------------------------------------------------------------
-   Si el SVG del logo existe, se muestra la imagen; si no, el texto JR ATHLETICS.
-   El texto sigue disponible para lectores de pantalla en ambos casos. */
+   Logo oficial en vectorial (media/logo/). El texto JR ATHLETICS queda oculto a
+   la vista pero disponible para lectores de pantalla. Si un SVG faltara, el
+   atributo onerror añade la clase "no-img" y se muestra el texto (nunca un
+   icono de imagen rota). */
 
 .logo { position: relative; display: inline-flex; align-items: center; margin: 0; }
-.logo > img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  opacity: 0;
-  pointer-events: none;
-}
-.logo.has-img > img { opacity: 1; }
-.logo.has-img > .logo-text {
+.logo > img { display: block; }
+.logo-text {
   position: absolute;
   width: 1px; height: 1px;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-.logo-text {
+  font-size: 1rem;
   font-weight: 800;
   text-transform: uppercase;
-  white-space: nowrap;
+}
+.logo.no-img .logo-text {
+  position: static;
+  width: auto; height: auto;
+  overflow: visible;
+  clip-path: none;
 }
 
-/* Logos pequeños (cabecera y pie): la imagen entra en el flujo al cargar */
+/* Cabecera y pie: monograma (corona + JR) */
+.logo--header img { width: auto; height: 34px; }
+.logo--footer img { width: auto; height: 40px; }
+@media (min-width: 1024px) {
+  .logo--header img { height: 38px; }
+}
 .logo--header .logo-text,
 .logo--footer .logo-text {
   font-size: 0.875rem;
   letter-spacing: 0.26em;
-  margin-right: -0.26em;
 }
-.logo--header.has-img > img,
-.logo--footer.has-img > img {
-  position: static;
-  width: auto;
-  height: 32px;
-}
-.logo--footer.has-img > img { height: 48px; }
 
-/* Logos grandes (portada y contacto): caja de tamaño fijo, nada salta al cargar */
+/* Portada y contacto: logo completo en una caja de proporción fija (nada salta al cargar) */
 .logo--hero,
 .logo--contact {
   display: grid;
@@ -321,36 +311,39 @@ a { color: inherit; }
   aspect-ratio: var(--logo-ratio);
   container-type: inline-size;
 }
-.logo--hero { width: clamp(220px, 58vw, 440px); }
-.logo--contact { width: clamp(150px, 34vw, 220px); }
+.logo--hero { width: clamp(230px, 62vw, 460px); }
+.logo--contact { width: clamp(150px, 40vw, 220px); }
+.logo--hero > img,
+.logo--contact > img { width: 100%; height: 100%; object-fit: contain; }
 
-.logo--hero .logo-text,
-.logo--contact .logo-text {
+/* Respaldo en texto si faltara el SVG */
+.logo--hero.no-img .logo-text,
+.logo--contact.no-img .logo-text {
   display: flex;
   flex-direction: column;
   align-items: center;
   line-height: 1;
 }
-.logo-jr {
+.no-img .logo-jr {
   font-size: clamp(101px, 26.7vw, 202px);
   font-weight: 800;
   line-height: 0.82;
   letter-spacing: -0.01em;
 }
-.logo-athletics {
+.no-img .logo-athletics {
   margin-top: clamp(14px, 3.5vw, 26px);
   margin-right: -0.52em;
   font-size: clamp(16px, 4.3vw, 32px);
   font-weight: 600;
   letter-spacing: 0.52em;
 }
-.logo--contact .logo-jr { font-size: clamp(69px, 15.6vw, 101px); }
-.logo--contact .logo-athletics { font-size: clamp(11px, 2.5vw, 16px); margin-top: 12px; }
+.logo--contact.no-img .logo-jr { font-size: clamp(69px, 15.6vw, 101px); }
+.logo--contact.no-img .logo-athletics { font-size: clamp(11px, 2.5vw, 16px); margin-top: 12px; }
 @supports (container-type: inline-size) {
-  .logo--hero .logo-jr,
-  .logo--contact .logo-jr { font-size: 46cqw; }
-  .logo--hero .logo-athletics,
-  .logo--contact .logo-athletics { font-size: 7.3cqw; margin-top: 6cqw; }
+  .logo--hero.no-img .logo-jr,
+  .logo--contact.no-img .logo-jr { font-size: 46cqw; }
+  .logo--hero.no-img .logo-athletics,
+  .logo--contact.no-img .logo-athletics { font-size: 7.3cqw; margin-top: 6cqw; }
 }
 
 
@@ -552,7 +545,31 @@ a { color: inherit; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 58%;
+  object-position: 50% 50%;
+}
+/* Encuadre calculado para la foto de frente (tx11-frontal.jpg, 1096 x 1435):
+   el logo grabado en el respaldo (centro en x 553, y 343 de la foto) queda
+   detrás de la corona del logo grande, para que no se vean dos logos.
+   Si cambias la foto de portada, borra este bloque y el de .hero de abajo.
+
+   Pantallas verticales: la foto ocupa todo el alto (el respaldo cae al 23,9 % de
+   la altura), así que se coloca el logo grande a esa altura. */
+.hero {
+  align-content: start;
+  padding-top: max(calc(var(--header-h) + 16px), calc(23.9vh - 0.0969 * clamp(230px, 62vw, 460px)));
+  padding-top: max(calc(var(--header-h) + 16px), calc(23.9svh - 0.0969 * clamp(230px, 62vw, 460px)));
+}
+/* Pantallas apaisadas: el logo grande va centrado y se desplaza la foto. */
+@media (min-aspect-ratio: 1/1) {
+  .hero { align-content: center; padding-top: calc(var(--header-h) + 24px); }
+  .hero-media .hero-poster {
+    object-position: 50% calc(50vh - 199.8px - clamp(24px, 4vh, 44px) - 31.296vw);
+    object-position: 50% calc(50svh - 199.8px - clamp(24px, 4vh, 44px) - 31.296vw);
+  }
+}
+/* Móvil en horizontal (poca altura): encuadre sencillo */
+@media (min-aspect-ratio: 1/1) and (max-height: 599px) {
+  .hero-media .hero-poster { object-position: 50% 30%; }
 }
 .hero-video { opacity: 0; transition: opacity 1.2s var(--ease); }
 .hero-video.is-playing { opacity: 1; }
@@ -561,7 +578,9 @@ a { color: inherit; }
   inset: 0;
   z-index: -2;
   background:
-    linear-gradient(180deg, rgba(20, 20, 22, 0.72) 0%, rgba(20, 20, 22, 0.58) 32%, rgba(20, 20, 22, 0.62) 64%, rgba(20, 20, 22, 0.92) 100%);
+    /* Velo radial detrás del logo: apaga el logo grabado del respaldo para que no compita */
+    radial-gradient(ellipse 50% 46% at 50% 32%, rgba(20, 20, 22, 0.74) 0%, rgba(20, 20, 22, 0.44) 45%, rgba(20, 20, 22, 0) 100%),
+    linear-gradient(180deg, rgba(20, 20, 22, 0.7) 0%, rgba(20, 20, 22, 0.55) 32%, rgba(20, 20, 22, 0.6) 64%, rgba(20, 20, 22, 0.92) 100%);
 }
 
 .hero-content {
@@ -643,14 +662,23 @@ a { color: inherit; }
 }
 
 /* --- 3. TX-11 --- */
-.bleed { position: relative; overflow: hidden; background: var(--bg-raise); }
-.bleed img {
+.tx11-media { display: grid; grid-template-columns: minmax(0, 1fr); background: var(--bg); }
+.tx11-shot { overflow: hidden; background: var(--bg-raise); }
+.tx11-shot img {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: 50% 50%;
 }
-@media (min-width: 768px) { .bleed img { aspect-ratio: 16 / 10; } }
-@media (min-width: 1024px) { .bleed img { aspect-ratio: 16 / 9; max-height: 92vh; } }
+.tx11-shot--side { display: none; }
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tx11-shot img { aspect-ratio: 1 / 1; object-position: 50% 45%; }
+}
+@media (min-width: 1024px) {
+  .tx11-media { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
+  .tx11-shot--side { display: block; }
+  .tx11-shot img { max-height: 100vh; }
+}
 
 .tx11-body { padding-top: clamp(40px, 6vw, 96px); row-gap: 32px; }
 .tx11-title { grid-column: 1 / -1; display: flex; flex-direction: column; }
@@ -676,16 +704,6 @@ a { color: inherit; }
   .tx11-copy { grid-column: 9 / -1; align-self: end; }
 }
 
-.tx11-views { margin-top: clamp(56px, 8vw, 120px); row-gap: 32px; }
-.tx11-view { grid-column: span 2; }
-@media (min-width: 1024px) { .tx11-view { grid-column: span 6; } }
-.tx11-view img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  background: var(--bg-raise);
-}
-.tx11-view figcaption,
 .detail figcaption,
 .loop figcaption,
 .pack-thumbs figcaption {
@@ -938,7 +956,7 @@ a { color: inherit; }
 .pack-layout { row-gap: 40px; }
 .pack-head { grid-column: 1 / -1; margin-bottom: 0; }
 .pack-hero { grid-column: 1 / -1; overflow: hidden; background: rgba(0, 0, 0, 0.2); }
-.pack-hero img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.pack-hero img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 60%; }
 .pack-content { grid-column: 1 / -1; }
 .pack-thumbs {
   grid-column: 1 / -1;
@@ -977,30 +995,28 @@ a { color: inherit; }
   .pack-layout { row-gap: 56px; align-items: start; }
   .pack-head { grid-column: 1 / span 8; }
   .pack-hero { grid-column: 1 / span 7; grid-row: 2 / span 2; }
-  .pack-hero img { aspect-ratio: 4 / 3.4; }
   .pack-content { grid-column: 9 / -1; grid-row: 2; }
   .pack-thumbs { grid-column: 9 / -1; grid-row: 3; align-self: end; }
 }
 
 /* --- 9. Las bandas --- */
-.bands-layout { row-gap: 40px; align-items: center; }
-.bands-img { grid-column: 1 / -1; overflow: hidden; background: var(--bg-raise); }
-.bands-img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.bands-info { grid-column: 1 / -1; }
-@media (min-width: 1024px) {
-  .bands-img { grid-column: 1 / span 6; }
-  .bands-info { grid-column: 8 / -1; }
-}
+.bands-layout { row-gap: 32px; align-items: end; }
+.bands-head { grid-column: 1 / -1; }
+.bands-head .h3 { margin-bottom: 16px; }
 .swatches {
+  grid-column: 1 / -1;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
-  margin: 32px 0 24px;
+}
+@media (min-width: 1024px) {
+  .bands-head { grid-column: 1 / span 5; }
+  .swatches { grid-column: 7 / -1; gap: 16px; }
 }
 .swatch-chip {
   display: block;
-  height: clamp(72px, 8vw, 112px);
+  height: clamp(120px, 20vw, 240px);
   border-radius: 2px;
   background: var(--c, #555);
   box-shadow: inset 0 0 0 1px rgba(241, 238, 232, 0.2);
@@ -1071,8 +1087,27 @@ a { color: inherit; }
 
 /* --- 11. La marca --- */
 .brand-layout { row-gap: 48px; align-items: center; }
-.brand-img { grid-column: 1 / -1; overflow: hidden; background: var(--bg-raise); }
-.brand-img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.brand-card {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 4vw, 44px);
+  aspect-ratio: 4 / 3;
+  padding: 32px;
+  background: var(--cream);
+  color: var(--ink);
+}
+.brand-card img { width: clamp(130px, 38%, 280px); height: auto; }
+.brand-card-motto {
+  font-size: clamp(0.625rem, 0.55rem + 0.35vw, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.brand-card-motto span { margin-inline: 0.7em; color: rgba(20, 20, 22, 0.35); }
 .brand-copy { grid-column: 1 / -1; }
 .brand-copy .h2 { margin-bottom: 32px; }
 .brand-copy p:not(.eyebrow):not(.closing) { color: var(--cream-2); max-width: 52ch; }
@@ -1087,7 +1122,7 @@ a { color: inherit; }
   text-transform: uppercase;
 }
 @media (min-width: 1024px) {
-  .brand-img { grid-column: 1 / span 6; }
+  .brand-card { grid-column: 1 / span 6; }
   .brand-copy { grid-column: 8 / -1; }
 }
 
@@ -1164,7 +1199,10 @@ a { color: inherit; }
   text-align: center;
 }
 .final-media { position: absolute; inset: 0; z-index: -3; }
-.final-media img { width: 100%; height: 100%; object-fit: cover; }
+.final-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+@media (min-aspect-ratio: 1/1) {
+  .final-media img { object-position: 50% 22%; }
+}
 .final-veil {
   position: absolute;
   inset: 0;
