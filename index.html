@@ -107,8 +107,8 @@
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <div class="nav-extra">
-        <!-- ENLACE DE AMAZON: pega aquí la URL de la ficha -->
-        <a class="btn btn--cyan" href="#" data-amazon>Comprar en Amazon</a>
+        <!-- ENLACE DE AMAZON: si cambia, actualízalo aquí y en main.js (DATOS.enlaces.amazon) -->
+        <a class="btn btn--cyan" href="https://www.amazon.es/dp/B0HGLFN5TQ" target="_blank" rel="noopener noreferrer" data-amazon data-cta="header">Comprar en Amazon<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
         <p class="nav-motto">Coraje <span aria-hidden="true">|</span> Disciplina <span aria-hidden="true">|</span> Superación</p>
       </div>
     </nav>
@@ -153,8 +153,8 @@
       <p class="motto">Coraje <span class="motto-sep" aria-hidden="true">|</span> Disciplina <span class="motto-sep" aria-hidden="true">|</span> Superación</p>
 
       <div class="hero-actions">
-        <!-- ENLACE DE AMAZON: pega aquí la URL de la ficha -->
-        <a class="btn btn--cyan" href="#" data-amazon>Comprar en Amazon</a>
+        <!-- ENLACE DE AMAZON: si cambia, actualízalo aquí y en main.js (DATOS.enlaces.amazon) -->
+        <a class="btn btn--cyan" href="https://www.amazon.es/dp/B0HGLFN5TQ" target="_blank" rel="noopener noreferrer" data-amazon data-cta="hero">Comprar en Amazon<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
         <a class="btn btn--ghost" href="#tx11">Descubrir el TX-11</a>
       </div>
     </div>
@@ -207,8 +207,8 @@
       </h2>
       <div class="tx11-copy reveal" style="--d: 120ms">
         <p class="lead">Respaldo regulable en <span data-cifra="respaldo">6</span>&nbsp;posiciones, soporte predicador, extensión de piernas y estructura plegable. En un solo banco.</p>
-        <!-- ENLACE DE AMAZON: pega aquí la URL de la ficha -->
-        <a class="btn btn--cyan" href="#" data-amazon>Comprar en Amazon</a>
+        <!-- ENLACE DE AMAZON: si cambia, actualízalo aquí y en main.js (DATOS.enlaces.amazon) -->
+        <a class="btn btn--cyan" href="https://www.amazon.es/dp/B0HGLFN5TQ" target="_blank" rel="noopener noreferrer" data-amazon data-cta="tx11">Comprar en Amazon<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
       </div>
     </div>
   </section>
@@ -228,7 +228,7 @@
         <li class="detail reveal">
           <figure>
             <!-- Relleno: recorte de la foto de frente. PENDIENTE (opcional): foto específica media/detalles/detalle-logo.jpg -->
-            <div class="detail-img"><img src="media/relleno/detalle-logo.jpg" width="240" height="300"
+            <div class="detail-img"><img src="media/relleno/detalle-logo.jpg" width="345" height="431"
                  alt="Primer plano del logo JR grabado en la parte alta del respaldo, con el ribete cian" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">01</span> Logo JR grabado en el respaldo</figcaption>
           </figure>
@@ -285,11 +285,10 @@
         <div class="versa-track" data-versa-track>
           <article class="versa-card is-active" id="ajuste-plano" data-versa-card="plano" aria-labelledby="ajuste-plano-t">
             <div class="versa-img">
-              <!-- Relleno: foto de perfil. PENDIENTE (opcional): media/ajustes/ajuste-plano.jpg -->
-              <img style="object-position: 50% 72%" src="media/producto/tx11-perfil-800.jpg"
-                   srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil.jpg 1096w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="1096" height="1435"
-                   alt="TX-11 de perfil, con el asiento y el respaldo a la vista" loading="lazy" decoding="async">
+              <!-- Relleno: recorte del asiento de la foto de perfil. PENDIENTE: foto del banco en plano, media/ajustes/ajuste-plano.jpg -->
+              <img style="object-position: 60% 50%" src="media/relleno/ajuste-plano.jpg"
+                   width="430" height="344"
+                   alt="Asiento del TX-11 con ribete cian, visto de perfil" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">01</span>
@@ -331,7 +330,7 @@
             <div class="versa-img">
               <!-- Relleno: recorte de la foto de perfil. PENDIENTE (opcional): media/ajustes/ajuste-extension.jpg -->
               <img style="object-position: 50% 60%" src="media/relleno/ajuste-extension.jpg"
-                   width="460" height="575"
+                   width="760" height="608"
                    alt="Accesorio frontal de extensión de piernas con sus rodillos" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
@@ -345,7 +344,7 @@
             <div class="versa-img">
               <!-- Relleno: recorte de la foto del pack. PENDIENTE (opcional): media/ajustes/ajuste-plegado.jpg -->
               <img style="object-position: 50% 50%" src="media/relleno/ajuste-plegado.jpg"
-                   width="810" height="500"
+                   width="700" height="560"
                    alt="TX-11 con la estructura plegada" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
@@ -371,7 +370,7 @@
       <img class="film-poster" style="object-position: 50% 64%"
            src="media/producto/tx11-perfil.jpg"
            srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil.jpg 1096w"
-           sizes="100vw" width="1096" height="1435"
+           sizes="(max-aspect-ratio: 1/1) 150vw, 100vw" width="1096" height="1435"
            alt="" loading="lazy" decoding="async">
       <div class="film-veil" aria-hidden="true"></div>
       <div class="film-content container">
@@ -424,9 +423,9 @@
       <li class="loop reveal" style="--d: 80ms">
         <figure>
           <div class="loop-media">
-            <!-- Relleno: foto del pack. PENDIENTE: portada media/entreno/remo-banda.jpg y su vídeo .mp4 -->
-            <img style="object-position: 50% 72%" src="media/pack/pack-completo-800.jpg" width="800" height="1047"
-                 alt="Contenido de la caja del TX-11 con las cuatro bandas de resistencia" loading="lazy" decoding="async">
+            <!-- Relleno: recorte de la foto de frente. PENDIENTE: portada media/entreno/remo-banda.jpg y su vídeo .mp4 -->
+            <img style="object-position: 50% 50%" src="media/relleno/entreno-remo.jpg" width="800" height="600"
+                 alt="Parte baja del TX-11 vista de frente: empuñaduras, rodillos y base" loading="lazy" decoding="async">
             <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/remo-banda.mp4"></video>
           </div>
           <figcaption>Remo a una mano con banda</figcaption>
@@ -446,9 +445,9 @@
       <li class="loop reveal" style="--d: 240ms">
         <figure>
           <div class="loop-media">
-            <!-- Relleno: recorte de la foto del pack. PENDIENTE: portada media/entreno/pull-apart.jpg y su vídeo .mp4 -->
-            <img style="object-position: 50% 50%" src="media/relleno/entreno-pull-apart.jpg" width="640" height="575"
-                 alt="Rodillos, barra azul y bolsa de transporte con el logo JR ATHLETICS" loading="lazy" decoding="async">
+            <!-- Relleno: recorte de la foto de perfil. PENDIENTE: portada media/entreno/pull-apart.jpg y su vídeo .mp4 -->
+            <img style="object-position: 50% 50%" src="media/relleno/entreno-pull-apart.jpg" width="700" height="875"
+                 alt="Respaldo inclinado y asiento del TX-11, vistos de perfil" loading="lazy" decoding="async">
             <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/pull-apart.mp4"></video>
           </div>
           <figcaption>Separación de banda</figcaption>
@@ -497,7 +496,7 @@
       <ul class="pack-thumbs" role="list">
         <li class="reveal">
           <figure>
-            <img src="media/relleno/pack-bolsa.jpg" width="220" height="275"
+            <img src="media/relleno/pack-bolsa.jpg" width="205" height="256"
                  alt="Bolsa de transporte de las bandas con el logo JR ATHLETICS" loading="lazy" decoding="async">
             <figcaption>Bolsa con logo</figcaption>
           </figure>
@@ -511,8 +510,8 @@
         </li>
         <li class="reveal" style="--d: 200ms">
           <figure>
-            <img src="media/relleno/pack-herramientas.jpg" width="270" height="335"
-                 alt="Llaves, tornillería y pasadores para el montaje" loading="lazy" decoding="async">
+            <img src="media/relleno/pack-herramientas.jpg" width="220" height="275"
+                 alt="Herramientas y tornillería para el montaje" loading="lazy" decoding="async">
             <figcaption>Llave y tornillería</figcaption>
           </figure>
         </li>
@@ -636,8 +635,8 @@
           <summary>¿Dónde lo compro?</summary>
           <div class="faq-answer">
             <p>En Amazon España.
-              <!-- ENLACE DE AMAZON: pega aquí la URL de la ficha -->
-              <a href="#" data-amazon>Ir a la ficha en Amazon</a>.</p>
+              <!-- ENLACE DE AMAZON: si cambia, actualízalo aquí y en main.js (DATOS.enlaces.amazon) -->
+              <a href="https://www.amazon.es/dp/B0HGLFN5TQ" target="_blank" rel="noopener noreferrer" data-amazon data-cta="faq">Ir a la ficha en Amazon<span class="sr-only"> (se abre en una pestaña nueva)</span></a>.</p>
           </div>
         </details>
         <details class="faq-item">
@@ -675,10 +674,10 @@
        ===================================================================== -->
   <section class="final" id="comprar" aria-labelledby="final-titulo">
     <div class="final-media" aria-hidden="true">
-      <!-- Relleno: foto de frente. PENDIENTE (opcional): media/marca/cierre.jpg -->
-      <img src="media/producto/tx11-frontal.jpg"
-           srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
-           sizes="100vw" width="1096" height="1435" alt="" loading="lazy" decoding="async">
+      <!-- Relleno: foto del pack (la sala con vistas al mar). PENDIENTE (opcional): media/marca/cierre.jpg -->
+      <img src="media/pack/pack-completo.jpg"
+           srcset="media/pack/pack-completo-800.jpg 800w, media/pack/pack-completo.jpg 1096w"
+           sizes="(max-aspect-ratio: 1/1) 150vw, 100vw" width="1096" height="1435" alt="" loading="lazy" decoding="async">
     </div>
     <div class="final-veil" aria-hidden="true"></div>
     <div class="wedge wedge--navy" aria-hidden="true"></div>
@@ -687,8 +686,8 @@
     <div class="final-content container">
       <h2 class="final-title reveal" id="final-titulo">Tu esfuerzo hoy, tu mejor versión mañana.</h2>
       <div class="reveal" style="--d: 120ms">
-        <!-- ENLACE DE AMAZON: pega aquí la URL de la ficha -->
-        <a class="btn btn--cyan" href="#" data-amazon>Comprar en Amazon</a>
+        <!-- ENLACE DE AMAZON: si cambia, actualízalo aquí y en main.js (DATOS.enlaces.amazon) -->
+        <a class="btn btn--cyan" href="https://www.amazon.es/dp/B0HGLFN5TQ" target="_blank" rel="noopener noreferrer" data-amazon data-cta="final">Comprar en Amazon<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
       </div>
     </div>
   </section>
@@ -758,8 +757,8 @@
 <!-- Barra de compra fija (solo móvil): aparece al pasar la portada y se oculta en el pie. -->
 <div class="buybar" data-buybar aria-hidden="true" inert>
   <p class="buybar-model">TX-11</p>
-  <!-- ENLACE DE AMAZON: pega aquí la URL de la ficha -->
-  <a class="btn btn--cyan btn--sm" href="#" data-amazon>Comprar en Amazon</a>
+  <!-- ENLACE DE AMAZON: si cambia, actualízalo aquí y en main.js (DATOS.enlaces.amazon) -->
+  <a class="btn btn--cyan btn--sm" href="https://www.amazon.es/dp/B0HGLFN5TQ" target="_blank" rel="noopener noreferrer" data-amazon data-cta="barra-movil">Comprar en Amazon<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
 </div>
 
 </body>

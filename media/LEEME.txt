@@ -23,12 +23,10 @@ media/logo/
 media/hero/
   [FALTA] hero-loop.mp4            Bucle de portada, horizontal
   [FALTA] hero-loop-vertical.mp4   Bucle de portada, vertical (móvil)
-  (opcional) hero-poster.jpg       Ahora la portada usa media/producto/tx11-frontal.jpg
 
 media/producto/
-  [YA] tx11-frontal.jpg      Foto principal: portada, TX-11 y llamada final
-  [YA] tx11-perfil.jpg       TX-11 (escritorio), versatilidad, vídeo y entreno
-  (opcional) tx11-tres-cuartos.jpg
+  [YA] tx11-frontal.jpg      Foto principal: portada y sección TX-11
+  [YA] tx11-perfil.jpg       TX-11 (escritorio), vídeo y recortes de relleno
 
 media/detalles/            (ahora: recortes de las fotos en media/relleno/)
   (opcional) detalle-logo.jpg, detalle-ribete.jpg, detalle-pasador.jpg, detalle-acolchado.jpg
@@ -49,13 +47,14 @@ media/entreno/             (cada vídeo con su .jpg de portada del mismo nombre)
   [FALTA] curl-sentado-banda.mp4      + curl-sentado-banda.jpg
 
 media/pack/
-  [YA] pack-completo.jpg     Foto cenital de todo el contenido de la caja
-  (opcional) bandas-4.jpg, bolsa-logo.jpg, manual.jpg, herramientas.jpg
+  [YA] pack-completo.jpg     Todo el contenido de la caja (y fondo de la llamada final)
+  (opcional) bolsa-logo.jpg, bandas-4.jpg, herramientas.jpg
              (ahora: recortes de pack-completo.jpg en media/relleno/)
+  OJO: en pack-completo.jpg el manual pone "TL-15" y dibuja otro banco.
 
 media/marca/
   (opcional) tarjeta-lema.jpg   Ahora La marca muestra el logo vectorial sobre crema
-  (opcional) cierre.jpg         Ahora la llamada final usa la foto de frente
+  (opcional) cierre.jpg         Ahora la llamada final usa pack-completo.jpg
 
 media/og/
   [YA] og-image.jpg          1200 x 630 px, hecha con la foto de frente y el logo.
@@ -90,31 +89,42 @@ Vídeo de 60 s
 3. QUÉ PASA AL SUBIR CADA ARCHIVO
 ---------------------------------
 
-Automático (no hay que tocar el código):
-  - Vídeos .mp4 (portada, 60 s y entreno): en cuanto existen, se reproducen.
-    Mientras falten, se ve la foto de portada de cada hueco.
+Vídeos .mp4 (portada, 60 s y entreno):
+  1. Sube el archivo a su carpeta con el nombre exacto.
+  2. En main.js, en el bloque DATOS > videos, cambia su false por true.
+  Mientras esté en false, la web no lo pide (así no hay errores en la consola) y
+  se ve la foto de portada de ese hueco.
 
-Manual (hay que cambiar la ruta en index.html):
-  - Las fotos .jpg. Cada hueco lleva encima un comentario con el nombre exacto
-    de la foto específica que puede ir ahí.
+Fotos .jpg:
+  Hay que cambiar la ruta en index.html. Cada hueco lleva encima un comentario
+  con el nombre exacto de la foto específica que puede ir ahí.
 
 
 4. VERSIONES REDIMENSIONADAS (srcset)
 -------------------------------------
 
-Para que el móvil no descargue fotos de 2400 px, cada foto se usa en tres
-anchuras: nombre-800.jpg, nombre-1600.jpg y nombre-2400.jpg.
-Se generan solas con el script incluido (necesita Python 3 y Pillow):
+Para que el móvil no descargue fotos más grandes de lo necesario, cada foto
+grande se usa en varias anchuras.
+
+Ahora mismo (fotos de 1096 px de ancho):
+  tx11-frontal.jpg (1096 px) y tx11-frontal-800.jpg (800 px), y lo mismo con
+  tx11-perfil y pack-completo.
+
+  PENDIENTE: si tienes estas tres fotos en más resolución (2400 px en el lado
+  largo), súbelas: se verán más nítidas en pantallas grandes.
+
+Con fotos de 2400 px se generan tres versiones con el script incluido
+(necesita Python 3 y Pillow):
 
   pip install Pillow
   python3 herramientas/preparar-imagenes.py media/producto/*.jpg
 
-En index.html, cada foto definitiva queda así (ejemplo):
+y en index.html cada foto queda así (ejemplo de foto vertical):
 
   <img src="media/producto/tx11-perfil-1600.jpg"
        srcset="media/producto/tx11-perfil-800.jpg 800w,
                media/producto/tx11-perfil-1600.jpg 1600w,
                media/producto/tx11-perfil-2400.jpg 2400w"
-       sizes="..." width="2400" height="1600" alt="..." loading="lazy" decoding="async">
+       sizes="..." width="1833" height="2400" alt="..." loading="lazy" decoding="async">
 
 (width y height: las medidas reales de la foto, para que nada salte al cargar.)

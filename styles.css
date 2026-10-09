@@ -315,6 +315,20 @@ a { color: inherit; }
 .logo--contact { width: clamp(150px, 40vw, 220px); }
 .logo--hero > img,
 .logo--contact > img { width: 100%; height: 100%; object-fit: contain; }
+/* Detrás de la corona: tapa el logo grabado del respaldo que se vería por sus huecos */
+.logo--hero::before {
+  content: "";
+  position: absolute;
+  left: 35%;
+  top: 1%;
+  width: 32%;
+  height: 15%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, #141416 62%, rgba(20, 20, 22, 0));
+  pointer-events: none;
+}
+.logo--hero.no-img::before { display: none; }
 
 /* Respaldo en texto si faltara el SVG */
 .logo--hero.no-img .logo-text,
@@ -672,7 +686,7 @@ a { color: inherit; }
 }
 .tx11-shot--side { display: none; }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .tx11-shot img { aspect-ratio: 1 / 1; object-position: 50% 45%; }
+  .tx11-shot img { aspect-ratio: 1 / 1; object-position: 50% 75%; }
 }
 @media (min-width: 1024px) {
   .tx11-media { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
@@ -814,8 +828,8 @@ a { color: inherit; }
   overflow: hidden;
   display: grid;
   place-items: center;
-  min-height: 88vh;
-  min-height: 88svh;
+  min-height: min(88vh, 150vw);
+  min-height: min(88svh, 150vw);
   text-align: center;
 }
 @media (min-width: 1024px) {
@@ -833,10 +847,10 @@ a { color: inherit; }
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(20, 20, 22, 0.55), rgba(20, 20, 22, 0.62) 50%, rgba(20, 20, 22, 0.86));
+  background: linear-gradient(180deg, rgba(20, 20, 22, 0.58), rgba(20, 20, 22, 0.72) 50%, rgba(20, 20, 22, 0.88));
 }
 .film-content { display: flex; flex-direction: column; align-items: center; padding-block: 96px; }
-.film-content .eyebrow { justify-content: center; }
+.film-content .eyebrow { justify-content: center; color: var(--cream); }
 .play {
   display: inline-flex;
   flex-direction: column;
@@ -1095,7 +1109,7 @@ a { color: inherit; }
   justify-content: center;
   gap: clamp(24px, 4vw, 44px);
   aspect-ratio: 4 / 3;
-  padding: 32px;
+  padding: 24px;
   background: var(--cream);
   color: var(--ink);
 }
@@ -1103,9 +1117,13 @@ a { color: inherit; }
 .brand-card-motto {
   font-size: clamp(0.625rem, 0.55rem + 0.35vw, 0.8125rem);
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.16em;
+  white-space: nowrap;
   text-align: center;
   text-transform: uppercase;
+}
+@media (min-width: 480px) {
+  .brand-card-motto { letter-spacing: 0.24em; }
 }
 .brand-card-motto span { margin-inline: 0.7em; color: rgba(20, 20, 22, 0.35); }
 .brand-copy { grid-column: 1 / -1; }
@@ -1201,7 +1219,7 @@ a { color: inherit; }
 .final-media { position: absolute; inset: 0; z-index: -3; }
 .final-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 @media (min-aspect-ratio: 1/1) {
-  .final-media img { object-position: 50% 22%; }
+  .final-media img { object-position: 50% 12%; }
 }
 .final-veil {
   position: absolute;

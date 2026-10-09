@@ -25,10 +25,10 @@ var DATOS = {
     bandas: 4         // bandas de resistencia incluidas
   },
 
-  /* Enlaces. Si pegas aquí la URL de la ficha de Amazon, se aplica a TODOS los
-     botones "Comprar en Amazon" (también puedes pegarla en cada enlace del HTML). */
+  /* Enlaces. La URL de Amazon está también escrita en cada botón del HTML, para
+     que funcionen aunque falle el JavaScript. Si cambia, cámbiala en los dos sitios. */
   enlaces: {
-    amazon: '',       // ENLACE DE AMAZON: pega aquí la URL de la ficha
+    amazon: 'https://www.amazon.es/dp/B0HGLFN5TQ',   // ENLACE DE AMAZON (ficha del TX-11)
     instagram: 'https://www.instagram.com/jr.athleticsfit/',
     email: ''         // PENDIENTE: email de contacto (se muestra en Contacto al rellenarlo)
   },
@@ -84,11 +84,24 @@ var DATOS = {
     garantia: null
   },
 
-  /* Vídeo de 60 s del producto. Por defecto se usa el archivo propio
-     media/video/tx11-60s.mp4 (si existe). Si prefieres YouTube, pon aquí solo
-     el ID del vídeo (lo que va tras "v=" en la URL): el reproductor
-     (youtube-nocookie) se carga SOLO al pulsar play. Si lo usas, descomenta
-     el párrafo de YouTube en privacidad.html. */
+  /* VÍDEOS. Sube cada archivo a su carpeta con el nombre exacto y cambia aquí
+     su false por true. Mientras esté en false, la web no lo pide (así no hay
+     errores en la consola) y se ve la foto de portada de ese hueco. */
+  videos: {
+    'media/hero/hero-loop.mp4': false,                 // portada, horizontal
+    'media/hero/hero-loop-vertical.mp4': false,        // portada, vertical (móvil)
+    'media/video/tx11-60s.mp4': false,                 // vídeo del producto (botón "Ver vídeo")
+    'media/entreno/press-sentado-banda.mp4': false,
+    'media/entreno/remo-banda.mp4': false,
+    'media/entreno/sentadilla-banco-banda.mp4': false,
+    'media/entreno/pull-apart.mp4': false,
+    'media/entreno/curl-sentado-banda.mp4': false
+  },
+
+  /* Vídeo de 60 s en YouTube (opcional, en lugar del archivo propio). Pon solo el
+     ID del vídeo (lo que va tras "v=" en la URL): el reproductor (youtube-nocookie)
+     se carga SOLO al pulsar play. Si lo usas, descomenta el párrafo de YouTube en
+     privacidad.html. */
   multimedia: {
     video60: 'media/video/tx11-60s.mp4',
     videoYouTube: ''
@@ -176,15 +189,11 @@ var DATOS = {
       });
     });
 
-    // Enlaces de compra
+    // Enlaces de compra: misma URL en todos, en pestaña nueva
     $$('[data-amazon]').forEach(function (a) {
-      if (DATOS.enlaces.amazon) {
-        a.href = DATOS.enlaces.amazon;
-      }
-      a.addEventListener('click', function (e) {
-        // Mientras no haya enlace, el botón no hace nada (en vez de saltar arriba).
-        if (a.getAttribute('href') === '#') e.preventDefault();
-      });
+      if (DATOS.enlaces.amazon) a.href = DATOS.enlaces.amazon;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
     });
 
     $$('[data-instagram]').forEach(function (a) {
@@ -289,10 +298,15 @@ var DATOS = {
 
   /* ---------------------------------------------------------------------
      5. Vídeos
-     - Solo se cargan si existe el archivo; si no, se queda la imagen de portada.
+     - Solo se cargan los marcados como disponibles en DATOS.videos; si no, se
+       queda la imagen de portada (y no se pide ningún archivo que no exista).
      - Se pausan fuera de pantalla y cuando la pestaña no está visible.
      --------------------------------------------------------------------- */
   var activeVideos = [];
+
+  function videoReady(path) {
+    return !!(path && DATOS.videos && DATOS.videos[path] === true);
+  }
 
   function playSafe(video) {
     var p = video.play();
@@ -319,7 +333,8 @@ var DATOS = {
     var vertical = video.getAttribute('data-src-vertical');
     var horizontal = video.getAttribute('data-src');
     var portrait = window.matchMedia('(max-aspect-ratio: 4/5)').matches;
-    var queue = (portrait && vertical) ? [vertical, horizontal] : [horizontal];
+    var queue = ((portrait && vertical) ? [vertical, horizontal] : [horizontal]).filter(videoReady);
+    if (!queue.length) { video.remove(); return; }
 
     function tryNext() {
       var src = queue.shift();
@@ -342,7 +357,7 @@ var DATOS = {
 
   function loops() {
     $$('video[data-loop]').forEach(function (video) {
-      if (!autoplayAllowed()) { video.remove(); return; }
+      if (!autoplayAllowed() || !videoReady(video.getAttribute('data-loop'))) { video.remove(); return; }
       video.addEventListener('error', function () { video.remove(); });
       video.addEventListener('playing', function () { video.classList.add('is-playing'); });
       activeVideos.push(video);
@@ -377,22 +392,8 @@ var DATOS = {
 
     function enable() { openBtn.hidden = false; }
 
-    if (ytId) {
-      enable();
-    } else if (file && window.fetch && location.protocol.indexOf('http') === 0) {
-      // Comprueba si el archivo existe cuando la sección se acerca a la pantalla.
-      var check = function () {
-        fetch(file, { method: 'HEAD' }).then(function (r) { if (r.ok) enable(); }).catch(function () {});
-      };
-      if (hasIO) {
-        var io = new IntersectionObserver(function (entries) {
-          if (entries[0].isIntersecting) { io.disconnect(); check(); }
-        }, { rootMargin: '600px 0px' });
-        io.observe(openBtn.closest('section'));
-      } else {
-        check();
-      }
-    }
+    // El botón "Ver vídeo" solo aparece si hay vídeo (YouTube o archivo marcado como disponible).
+    if (ytId || videoReady(file)) enable();
 
     function open() {
       player.textContent = '';
@@ -434,6 +435,34 @@ var DATOS = {
     modal.addEventListener('click', function (e) {
       if (e.target === modal) close();
     });
+  }
+
+  /* Carruseles deslizables (móvil y tableta): se pueden recorrer con el teclado
+     y tienen nombre para lectores de pantalla. En escritorio no se desplazan. */
+  function scrollers() {
+    var narrow = window.matchMedia('(max-width: 1023px)');
+    var tracks = [
+      [$('[data-versa-track]'), 'Posiciones del banco'],
+      [$('.train-track'), 'Ejercicios con el banco']
+    ].filter(function (t) { return t[0]; });
+    function update() {
+      tracks.forEach(function (t) {
+        var el = t[0];
+        // Las listas (<ul>) conservan su papel de lista; el resto pasa a ser una región con nombre
+        var isList = el.tagName === 'UL' || el.tagName === 'OL';
+        if (narrow.matches) {
+          el.setAttribute('tabindex', '0');
+          if (!isList) el.setAttribute('role', 'region');
+          el.setAttribute('aria-label', t[1] + ' (desliza para ver más)');
+        } else {
+          el.removeAttribute('tabindex');
+          if (!isList) el.removeAttribute('role');
+          el.removeAttribute('aria-label');
+        }
+      });
+    }
+    update();
+    if (narrow.addEventListener) narrow.addEventListener('change', update);
   }
 
   /* ---------------------------------------------------------------------
@@ -479,7 +508,8 @@ var DATOS = {
   }
 
   /* ---------------------------------------------------------------------
-     7. Barra de compra en móvil: tras la portada, oculta al llegar al pie
+     7. Barra de compra en móvil: aparece tras la portada, se oculta mientras
+        hay otro botón de compra en pantalla (para no duplicarlo) y en el pie.
      --------------------------------------------------------------------- */
   function buybar() {
     var bar = $('[data-buybar]');
@@ -488,9 +518,10 @@ var DATOS = {
     if (!bar || !hero || !hasIO) return;
     var pastHero = false;
     var atFooter = false;
+    var otherCtas = new Set();
 
     function update() {
-      var show = pastHero && !atFooter;
+      var show = pastHero && !atFooter && otherCtas.size === 0;
       bar.classList.toggle('is-visible', show);
       bar.setAttribute('aria-hidden', show ? 'false' : 'true');
       if (show) bar.removeAttribute('inert');
@@ -509,6 +540,16 @@ var DATOS = {
         update();
       }).observe(footer);
     }
+
+    // Botones de compra de la propia página (portada, TX-11 y llamada final)
+    // (el margen superior descuenta la cabecera fija: un botón tapado por ella no cuenta)
+    var ctaIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) otherCtas.add(e.target); else otherCtas.delete(e.target);
+      });
+      update();
+    }, { rootMargin: '-64px 0px 0px 0px' });
+    $$('main .btn[data-amazon]').forEach(function (a) { ctaIO.observe(a); });
   }
 
   /* --------------------------------------------------------------------- */
@@ -520,6 +561,7 @@ var DATOS = {
     heroVideo();
     loops();
     film();
+    scrollers();
     versatility();
     buybar();
     window.JR_LISTO = true;

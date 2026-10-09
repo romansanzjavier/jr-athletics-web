@@ -2,21 +2,21 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Página no encontrada · JR ATHLETICS</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#141416">
 <script>
   /* GitHub Pages sirve esta página en cualquier ruta que no exista (también en
-     subcarpetas). Esto fija la raíz del sitio para que estilos, tipografía e
-     imágenes carguen siempre, con dominio propio o en usuario.github.io/repositorio/. */
+     subcarpetas). La etiqueta <base href="/"> de arriba hace que estilos, tipografía
+     e imágenes carguen desde la raíz de jrathleticsfit.com. Si la web se ve en
+     usuario.github.io/repositorio/, se ajusta aquí a esa carpeta. */
   (function () {
     var parts = location.pathname.split('/');
-    var base = '/';
-    if (/\.github\.io$/i.test(location.hostname) && parts.length > 2 && parts[1]) base = '/' + parts[1] + '/';
-    var el = document.createElement('base');
-    el.href = base;
-    document.head.appendChild(el);
+    if (/\.github\.io$/i.test(location.hostname) && parts.length > 2 && parts[1]) {
+      document.querySelector('base').href = '/' + parts[1] + '/';
+    }
   })();
 </script>
 <link rel="icon" href="favicon.ico" sizes="any">
