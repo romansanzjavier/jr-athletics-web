@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Página no encontrada · JR ATHLETICS</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#141416">
+<script>
+  /* GitHub Pages sirve esta página en cualquier ruta que no exista (también en
+     subcarpetas). La etiqueta <base href="/"> de arriba hace que estilos, tipografía
+     e imágenes carguen desde la raíz de jrathleticsfit.com. Si la web se ve en
+     usuario.github.io/repositorio/, se ajusta aquí a esa carpeta. */
+  (function () {
+    var parts = location.pathname.split('/');
+    if (/\.github\.io$/i.test(location.hostname) && parts.length > 2 && parts[1]) {
+      document.querySelector('base').href = '/' + parts[1] + '/';
+    }
+  })();
+</script>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script src="main.js" defer></script>
+</head>
+<body class="page-simple">
+
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header" data-header>
+  <div class="container header-bar">
+    <a class="header-logo" href="./" aria-label="JR ATHLETICS, ir a la página principal">
+      <span class="logo logo--header">
+        <img src="media/logo/jr-monograma-blanco.svg" alt="" width="52" height="38" decoding="async"
+             onerror="this.parentNode.classList.add('no-img');this.remove()">
+        <span class="logo-text">JR ATHLETICS</span>
+      </span>
+    </a>
+    <a class="header-back" href="./">Volver a la web</a>
+  </div>
+</header>
+
+<main id="contenido" class="notfound">
+  <div>
+    <p class="notfound-code" aria-hidden="true">404</p>
+    <h1>Esta página no existe.</h1>
+    <p>Puede que el enlace esté mal escrito o que la página se haya movido.</p>
+    <a class="btn btn--cyan" href="./">Volver a la web</a>
+  </div>
+</main>
+
+<footer class="site-footer" data-footer>
+  <div class="container footer-inner">
+    <span class="logo logo--footer">
+      <img src="media/logo/jr-monograma-negro.svg" alt="" width="54" height="40" loading="lazy" decoding="async"
+           onerror="this.parentNode.classList.add('no-img');this.remove()">
+      <span class="logo-text">JR ATHLETICS</span>
+    </span>
+    <p class="footer-legal">© <span data-year>2026</span> JR ATHLETICS · Marca registrada</p>
+    <ul class="footer-links" role="list">
+      <li><a href="aviso-legal.html">Aviso legal</a></li>
+      <li><a href="privacidad.html">Privacidad</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+JR ATHLETICS · ARCHIVOS MULTIMEDIA
+==================================
+
+Sube cada archivo a su carpeta con el nombre EXACTO (minúsculas, sin espacios,
+sin tildes). La web ya está preparada para recibirlos.
+
+
+1. LISTA DE ARCHIVOS
+--------------------
+
+[YA] = ya está en la web.   [FALTA] = todavía no existe.   (opcional) = mejora, no imprescindible.
+
+media/logo/
+  [YA] jr-logo-blanco.svg       Logo completo en crema (portada y contacto)
+  [YA] jr-logo-negro.svg        Logo completo en negro (tarjeta de La marca)
+  [YA] jr-monograma-blanco.svg  Corona + JR (cabecera)
+  [YA] jr-monograma-negro.svg   Corona + JR (pie)
+  [YA] logo-jr-blanco.png       PNG de respaldo (1200 px, fondo transparente)
+  [YA] logo-jr-negro.png        PNG de respaldo (lo usan los buscadores)
+  Todos salen del PDF vectorial del logo. El favicon (favicon.svg, favicon.ico y
+  apple-touch-icon.png, en la raíz) es el monograma sobre fondo casi negro.
+
+media/hero/
+  [FALTA] hero-loop.mp4            Bucle de portada, horizontal
+  [FALTA] hero-loop-vertical.mp4   Bucle de portada, vertical (móvil)
+
+media/producto/
+  [YA] tx11-frontal.jpg      Foto principal: portada y sección TX-11
+  [YA] tx11-perfil.jpg       TX-11 (escritorio), vídeo y recortes de relleno
+
+media/detalles/            (ahora: recortes de las fotos en media/relleno/)
+  (opcional) detalle-logo.jpg, detalle-ribete.jpg, detalle-pasador.jpg, detalle-acolchado.jpg
+
+media/ajustes/             (ahora: fotos de perfil y frente, y recortes)
+  (opcional) ajuste-plano.jpg, ajuste-inclinado.jpg, ajuste-predicador.jpg,
+             ajuste-extension.jpg, ajuste-plegado.jpg
+
+media/video/
+  [FALTA] tx11-60s.mp4             Vídeo del producto (unos 60 s)
+  (opcional) tx11-60s-poster.jpg   Ahora se usa la foto de perfil
+
+media/entreno/             (cada vídeo con su .jpg de portada del mismo nombre)
+  [FALTA] press-sentado-banda.mp4     + press-sentado-banda.jpg
+  [FALTA] remo-banda.mp4              + remo-banda.jpg
+  [FALTA] sentadilla-banco-banda.mp4  + sentadilla-banco-banda.jpg
+  [FALTA] pull-apart.mp4              + pull-apart.jpg
+  [FALTA] curl-sentado-banda.mp4      + curl-sentado-banda.jpg
+
+media/pack/
+  [YA] pack-completo.jpg     Todo el contenido de la caja (y fondo de la llamada final)
+  (opcional) bolsa-logo.jpg, bandas-4.jpg, herramientas.jpg
+             (ahora: recortes de pack-completo.jpg en media/relleno/)
+  OJO: en pack-completo.jpg el manual pone "TL-15" y dibuja otro banco.
+
+media/marca/
+  (opcional) tarjeta-lema.jpg   Ahora La marca muestra el logo vectorial sobre crema
+  (opcional) cierre.jpg         Ahora la llamada final usa pack-completo.jpg
+
+media/og/
+  [YA] og-image.jpg          1200 x 630 px, hecha con la foto de frente y el logo.
+
+media/relleno/
+  Recortes de las tres fotos (frente, perfil y pack) que rellenan los huecos de
+  detalles, ajustes, entreno y pack hasta que haya fotos específicas. Cuando
+  llegue una foto específica, se cambia la ruta en index.html (cada hueco lleva
+  un comentario "Relleno: ... PENDIENTE (opcional): media/...").
+
+
+2. ESPECIFICACIONES DE ENTREGA
+------------------------------
+
+Fotos
+  - JPG en calidad máxima.
+  - 2400 px en el lado largo.
+  - Mismo tratamiento de color en todas: oscuro, contrastado, ligeramente desaturado.
+  - Sin textos ni logos añadidos encima.
+
+Bucles (portada y entreno)
+  - MP4 H.264 (WebM opcional), 1080p.
+  - 4–12 s, sin cortes (el final enlaza con el principio).
+  - SIN pista de audio.
+  - Menos de 8 MB cada uno.
+
+Vídeo de 60 s
+  - MP4 H.264, 1080p.
+  - Menos de 25 MB.
+
+
+3. QUÉ PASA AL SUBIR CADA ARCHIVO
+---------------------------------
+
+Vídeos .mp4 (portada, 60 s y entreno):
+  1. Sube el archivo a su carpeta con el nombre exacto.
+  2. En main.js, en el bloque DATOS > videos, cambia su false por true.
+  Mientras esté en false, la web no lo pide (así no hay errores en la consola) y
+  se ve la foto de portada de ese hueco.
+
+Fotos .jpg:
+  Hay que cambiar la ruta en index.html. Cada hueco lleva encima un comentario
+  con el nombre exacto de la foto específica que puede ir ahí.
+
+
+4. VERSIONES REDIMENSIONADAS (srcset)
+-------------------------------------
+
+Para que el móvil no descargue fotos más grandes de lo necesario, cada foto
+grande se usa en varias anchuras.
+
+Ahora mismo (fotos de 1096 px de ancho):
+  tx11-frontal.jpg (1096 px) y tx11-frontal-800.jpg (800 px), y lo mismo con
+  tx11-perfil y pack-completo.
+
+  PENDIENTE: si tienes estas tres fotos en más resolución (2400 px en el lado
+  largo), súbelas: se verán más nítidas en pantallas grandes.
+
+Con fotos de 2400 px se generan tres versiones con el script incluido
+(necesita Python 3 y Pillow):
+
+  pip install Pillow
+  python3 herramientas/preparar-imagenes.py media/producto/*.jpg
+
+y en index.html cada foto queda así (ejemplo de foto vertical):
+
+  <img src="media/producto/tx11-perfil-1600.jpg"
+       srcset="media/producto/tx11-perfil-800.jpg 800w,
+               media/producto/tx11-perfil-1600.jpg 1600w,
+               media/producto/tx11-perfil-2400.jpg 2400w"
+       sizes="..." width="1833" height="2400" alt="..." loading="lazy" decoding="async">
+
+(width y height: las medidas reales de la foto, para que nada salte al cargar.)
