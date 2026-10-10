@@ -91,11 +91,10 @@ var DATOS = {
     'media/hero/hero-loop.mp4': false,                 // portada, horizontal
     'media/hero/hero-loop-vertical.mp4': false,        // portada, vertical (móvil)
     'media/video/tx11-60s.mp4': false,                 // vídeo del producto (botón "Ver vídeo")
-    'media/entreno/press-sentado-banda.mp4': false,
-    'media/entreno/remo-banda.mp4': false,
-    'media/entreno/sentadilla-banco-banda.mp4': false,
-    'media/entreno/pull-apart.mp4': false,
-    'media/entreno/curl-sentado-banda.mp4': false
+    'media/entreno/curl-predicador.mp4': false,
+    'media/entreno/extension-piernas.mp4': false,
+    'media/entreno/abdominales-declive.mp4': false,
+    'media/entreno/sentado-banda.mp4': false
   },
 
   /* Vídeo de 60 s en YouTube (opcional, en lugar del archivo propio). Pon solo el

@@ -315,20 +315,6 @@ a { color: inherit; }
 .logo--contact { width: clamp(150px, 40vw, 220px); }
 .logo--hero > img,
 .logo--contact > img { width: 100%; height: 100%; object-fit: contain; }
-/* Detrás de la corona: tapa el logo grabado del respaldo que se vería por sus huecos */
-.logo--hero::before {
-  content: "";
-  position: absolute;
-  left: 35%;
-  top: 1%;
-  width: 32%;
-  height: 15%;
-  z-index: -1;
-  border-radius: 50%;
-  background: radial-gradient(closest-side, #141416 62%, rgba(20, 20, 22, 0));
-  pointer-events: none;
-}
-.logo--hero.no-img::before { display: none; }
 
 /* Respaldo en texto si faltara el SVG */
 .logo--hero.no-img .logo-text,
@@ -561,29 +547,39 @@ a { color: inherit; }
   object-fit: cover;
   object-position: 50% 50%;
 }
-/* Encuadre calculado para la foto de frente (tx11-frontal.jpg, 1096 x 1435):
-   el logo grabado en el respaldo (centro en x 553, y 343 de la foto) queda
-   detrás de la corona del logo grande, para que no se vean dos logos.
-   Si cambias la foto de portada, borra este bloque y el de .hero de abajo.
+/* Portada: foto vertical (portada-vertical.jpg) en pantallas más estrechas que 3:4 y
+   horizontal (portada-horizontal.jpg) en las demás; las elige el <picture> de index.html.
 
-   Pantallas verticales: la foto ocupa todo el alto (el respaldo cae al 23,9 % de
-   la altura), así que se coloca el logo grande a esa altura. */
-.hero {
-  align-content: start;
-  padding-top: max(calc(var(--header-h) + 16px), calc(23.9vh - 0.0969 * clamp(230px, 62vw, 460px)));
-  padding-top: max(calc(var(--header-h) + 16px), calc(23.9svh - 0.0969 * clamp(230px, 62vw, 460px)));
-}
-/* Pantallas apaisadas: el logo grande va centrado y se desplaza la foto. */
-@media (min-aspect-ratio: 1/1) {
-  .hero { align-content: center; padding-top: calc(var(--header-h) + 24px); }
-  .hero-media .hero-poster {
-    object-position: 50% calc(50vh - 199.8px - clamp(24px, 4vh, 44px) - 31.296vw);
-    object-position: 50% calc(50svh - 199.8px - clamp(24px, 4vh, 44px) - 31.296vw);
+   Pantallas verticales: la foto ocupa todo el alto y su ancho es el 75 % de ese alto.
+   El logo pequeño del respaldo está en x 56,7 %, y 27,1 % de portada-vertical.jpg; se
+   coloca detrás de la barra superior de la R del logo grande (x 70 %, y 29 % de su caja,
+   que mide clamp(230px, 62vw, 460px) de ancho y 0,8809 veces eso de alto), para que no
+   se vean dos logos. Si cambias la foto de portada vertical, revisa estos números. */
+@media (max-aspect-ratio: 3/4) {
+  .hero {
+    align-content: start;
+    padding-top: max(calc(var(--header-h) + 16px), calc(27.1vh - 0.2555 * clamp(230px, 62vw, 460px)));
+    padding-top: max(calc(var(--header-h) + 16px), calc(27.1svh - 0.2555 * clamp(230px, 62vw, 460px)));
   }
-}
-/* Móvil en horizontal (poca altura): encuadre sencillo */
-@media (min-aspect-ratio: 1/1) and (max-height: 599px) {
-  .hero-media .hero-poster { object-position: 50% 30%; }
+  /* Desplaza la foto en horizontal sin dejar nunca un hueco a los lados */
+  .hero-media .hero-poster {
+    object-position: clamp(100vw - 75vh, 50vw + 0.2 * clamp(230px, 62vw, 460px) - 42.525vh, 0px) 50%;
+    object-position: clamp(100vw - 75svh, 50vw + 0.2 * clamp(230px, 62vw, 460px) - 42.525svh, 0px) 50%;
+  }
+  /* Mancha oscura detrás de la barra de la R: absorbe pequeños desajustes */
+  .logo--hero::before {
+    content: "";
+    position: absolute;
+    left: 58%;
+    top: 21%;
+    width: 24%;
+    height: 16%;
+    z-index: -1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, #141416 55%, rgba(20, 20, 22, 0));
+    pointer-events: none;
+  }
+  .logo--hero.no-img::before { display: none; }
 }
 .hero-video { opacity: 0; transition: opacity 1.2s var(--ease); }
 .hero-video.is-playing { opacity: 1; }
@@ -684,9 +680,11 @@ a { color: inherit; }
   object-fit: cover;
   object-position: 50% 50%;
 }
+/* La foto de frente se encuadra desde arriba para que no se corte el logo del respaldo */
+.tx11-shot:first-child img { object-position: 50% 0%; }
 .tx11-shot--side { display: none; }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .tx11-shot img { aspect-ratio: 1 / 1; object-position: 50% 75%; }
+  .tx11-shot img { aspect-ratio: 1 / 1; }
 }
 @media (min-width: 1024px) {
   .tx11-media { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px; }
@@ -952,9 +950,7 @@ a { color: inherit; }
     padding: 0;
     overflow: visible;
   }
-  .loop:nth-child(-n + 3) { grid-column: span 4; }
-  .loop:nth-child(n + 4) { grid-column: span 6; }
-  .loop:nth-child(n + 4) .loop-media { aspect-ratio: 3 / 2; }
+  .loop { grid-column: span 3; }
 }
 
 /* --- 8. El pack (sección destacada) --- */
