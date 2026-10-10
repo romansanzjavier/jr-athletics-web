@@ -10,7 +10,7 @@
 
 <!-- Compartir (WhatsApp, Instagram, X…). Estas imágenes van con URL absoluta:
      es el único sitio de la web donde no se usa una ruta relativa.
-     media/og/og-image.jpg está hecha con la foto de frente y el logo oficial (1200x630).
+     media/og/og-image.jpg está hecha con la foto horizontal de portada y el logo oficial (1200x630).
      Si cambias la imagen, mantén el mismo nombre y tamaño. -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="JR ATHLETICS">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://jrathleticsfit.com/media/og/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Logo de JR ATHLETICS y el banco de musculación regulable TX-11 visto de frente">
+<meta property="og:image:alt" content="Logo de JR ATHLETICS sobre el banco de musculación regulable TX-11">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="JR ATHLETICS · Banco de musculación regulable TX-11">
 <meta name="twitter:description" content="CORAJE | DISCIPLINA | SUPERACIÓN. Equipamiento premium para tu entrenamiento.">
@@ -122,13 +122,18 @@
        ===================================================================== -->
   <section class="hero" id="portada" aria-label="Portada">
     <div class="hero-media" aria-hidden="true">
-      <!-- Foto principal: el TX-11 de frente (media/producto/tx11-frontal.jpg).
-           Es también la imagen que se ve mientras no exista el vídeo de portada. -->
-      <img class="hero-poster"
-           src="media/producto/tx11-frontal.jpg"
-           srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
-           sizes="100vw" width="1096" height="1435"
-           alt="" fetchpriority="high" decoding="async">
+      <!-- Foto de portada: vertical en pantallas más estrechas que la foto (3:4, móvil) y
+           horizontal en las demás. Es también la imagen que se ve mientras no exista el vídeo de portada. -->
+      <picture>
+        <source media="(min-aspect-ratio: 751/1000)"
+                srcset="media/hero/portada-horizontal-1000.jpg 1000w, media/hero/portada-horizontal-1400.jpg 1400w, media/hero/portada-horizontal-1800.jpg 1800w, media/hero/portada-horizontal.jpg 2400w"
+                sizes="100vw" width="2400" height="1800">
+        <img class="hero-poster"
+             src="media/hero/portada-vertical-800.jpg"
+             srcset="media/hero/portada-vertical-800.jpg 800w, media/hero/portada-vertical-1200.jpg 1200w, media/hero/portada-vertical.jpg 1600w"
+             sizes="100vw" width="1600" height="2133"
+             alt="" fetchpriority="high" decoding="async">
+      </picture>
       <!-- Vídeo en bucle: main.js lo carga solo si existe el archivo, después de la imagen,
            y nunca con "reducir movimiento" o "ahorro de datos". En móvil vertical prueba
            primero la versión vertical. -->
@@ -185,17 +190,17 @@
     <!-- Foto principal a sangre: el TX-11 de frente. En escritorio la acompaña la foto de perfil. -->
     <div class="tx11-media">
       <figure class="tx11-shot">
-        <img src="media/producto/tx11-frontal.jpg"
-             srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
-             sizes="(min-width: 1024px) 50vw, 100vw" width="1096" height="1435"
-             alt="Banco de musculación regulable TX-11 de JR ATHLETICS visto de frente, con el logo JR en el respaldo y el soporte predicador, en una sala con vistas al mar"
+        <img src="media/producto/tx11-frontal-800.jpg"
+             srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal-1200.jpg 1200w, media/producto/tx11-frontal.jpg 1600w"
+             sizes="(min-width: 1024px) 50vw, 100vw" width="1600" height="2133"
+             alt="Banco de musculación regulable TX-11 de JR ATHLETICS visto de frente, con el logo JR en el respaldo, el soporte predicador y los rodillos"
              loading="lazy" decoding="async">
       </figure>
       <figure class="tx11-shot tx11-shot--side">
-        <img src="media/producto/tx11-perfil.jpg"
-             srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil.jpg 1096w"
-             sizes="50vw" width="1096" height="1435"
-             alt="TX-11 de perfil, con el respaldo inclinado, el asiento con ribete cian, el soporte predicador y los rodillos de extensión de piernas"
+        <img src="media/producto/tx11-perfil-800.jpg"
+             srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil-1200.jpg 1200w, media/producto/tx11-perfil.jpg 1600w"
+             sizes="50vw" width="1600" height="2133"
+             alt="TX-11 con el respaldo inclinado, el soporte predicador y los rodillos de extensión de piernas"
              loading="lazy" decoding="async">
       </figure>
     </div>
@@ -227,33 +232,29 @@
       <ul class="grid details-grid" role="list">
         <li class="detail reveal">
           <figure>
-            <!-- Relleno: recorte de la foto de frente. PENDIENTE (opcional): foto específica media/detalles/detalle-logo.jpg -->
-            <div class="detail-img"><img src="media/relleno/detalle-logo.jpg" width="345" height="431"
-                 alt="Primer plano del logo JR grabado en la parte alta del respaldo, con el ribete cian" loading="lazy" decoding="async"></div>
+            <div class="detail-img"><img src="media/detalles/detalle-logo.jpg" width="800" height="1000"
+                 alt="Primer plano del logo JR en la parte alta del respaldo, con el ribete cian" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">01</span> Logo JR grabado en el respaldo</figcaption>
           </figure>
         </li>
         <li class="detail reveal" style="--d: 100ms">
           <figure>
-            <!-- Relleno: recorte de la foto de perfil. PENDIENTE (opcional): foto específica media/detalles/detalle-ribete.jpg -->
-            <div class="detail-img"><img src="media/relleno/detalle-ribete.jpg" width="320" height="400"
-                 alt="Primer plano del asiento y el respaldo con el ribete en cian a lo largo del borde" loading="lazy" decoding="async"></div>
+            <div class="detail-img"><img src="media/detalles/detalle-ribete.jpg" width="800" height="1000"
+                 alt="Respaldo y asiento con el ribete en cian a lo largo del borde" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">02</span> Ribetes en cian</figcaption>
           </figure>
         </li>
         <li class="detail reveal" style="--d: 200ms">
           <figure>
-            <!-- Relleno: recorte de la foto del pack. PENDIENTE (opcional): foto específica media/detalles/detalle-pasador.jpg -->
-            <div class="detail-img"><img src="media/relleno/detalle-pasador.jpg" width="300" height="375"
-                 alt="Pasadores de seguridad con anilla, junto a la tornillería del banco" loading="lazy" decoding="async"></div>
+            <div class="detail-img"><img src="media/detalles/detalle-pasador.jpg" width="800" height="1000"
+                 alt="Pasador de seguridad con anilla en la estructura del asiento" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">03</span> Pasadores de seguridad</figcaption>
           </figure>
         </li>
         <li class="detail reveal" style="--d: 300ms">
           <figure>
-            <!-- Relleno: recorte de la foto de frente. PENDIENTE (opcional): foto específica media/detalles/detalle-acolchado.jpg -->
-            <div class="detail-img"><img src="media/relleno/detalle-acolchado.jpg" width="300" height="375"
-                 alt="Almohadilla del predicador y asiento con acolchado de alta densidad" loading="lazy" decoding="async"></div>
+            <div class="detail-img"><img src="media/detalles/detalle-acolchado.jpg" width="800" height="1000"
+                 alt="Asiento y respaldo con acolchado de alta densidad y ribete cian" loading="lazy" decoding="async"></div>
             <figcaption><span class="num">04</span> Acolchado de alta densidad</figcaption>
           </figure>
         </li>
@@ -285,10 +286,10 @@
         <div class="versa-track" data-versa-track>
           <article class="versa-card is-active" id="ajuste-plano" data-versa-card="plano" aria-labelledby="ajuste-plano-t">
             <div class="versa-img">
-              <!-- Relleno: recorte del asiento de la foto de perfil. PENDIENTE: foto del banco en plano, media/ajustes/ajuste-plano.jpg -->
-              <img style="object-position: 60% 50%" src="media/relleno/ajuste-plano.jpg"
-                   width="430" height="344"
-                   alt="Asiento del TX-11 con ribete cian, visto de perfil" loading="lazy" decoding="async">
+              <img style="object-position: 50% 50%" src="media/ajustes/ajuste-plano-800.jpg"
+                   srcset="media/ajustes/ajuste-plano-800.jpg 800w, media/ajustes/ajuste-plano.jpg 1200w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="900"
+                   alt="TX-11 de perfil con el respaldo plano" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">01</span>
@@ -299,10 +300,10 @@
 
           <article class="versa-card" id="ajuste-inclinado" data-versa-card="inclinado" aria-labelledby="ajuste-inclinado-t">
             <div class="versa-img">
-              <!-- Relleno: recorte de la foto de perfil. PENDIENTE (opcional): media/ajustes/ajuste-inclinado.jpg -->
-              <img style="object-position: 55% 50%" src="media/relleno/ajuste-inclinado.jpg"
-                   width="796" height="795"
-                   alt="Respaldo del TX-11 inclinado, visto de perfil" loading="lazy" decoding="async">
+              <img style="object-position: 50% 62%" src="media/ajustes/ajuste-inclinado-800.jpg"
+                   srcset="media/ajustes/ajuste-inclinado-800.jpg 800w, media/ajustes/ajuste-inclinado.jpg 1200w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="1600"
+                   alt="TX-11 de perfil con el respaldo inclinado" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">02</span>
@@ -313,11 +314,10 @@
 
           <article class="versa-card" id="ajuste-predicador" data-versa-card="predicador" aria-labelledby="ajuste-predicador-t">
             <div class="versa-img">
-              <!-- Relleno: foto de frente. PENDIENTE (opcional): media/ajustes/ajuste-predicador.jpg -->
-              <img style="object-position: 50% 50%" src="media/producto/tx11-frontal-800.jpg"
-                   srcset="media/producto/tx11-frontal-800.jpg 800w, media/producto/tx11-frontal.jpg 1096w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="1096" height="1435"
-                   alt="Almohadilla del soporte predicador vista de frente" loading="lazy" decoding="async">
+              <img style="object-position: 50% 50%" src="media/ajustes/ajuste-predicador-800.jpg"
+                   srcset="media/ajustes/ajuste-predicador-800.jpg 800w, media/ajustes/ajuste-predicador.jpg 1200w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="900"
+                   alt="Soporte predicador del TX-11 en primer plano, con el banco detrás" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">03</span>
@@ -328,10 +328,10 @@
 
           <article class="versa-card" id="ajuste-extension" data-versa-card="extension" aria-labelledby="ajuste-extension-t">
             <div class="versa-img">
-              <!-- Relleno: recorte de la foto de perfil. PENDIENTE (opcional): media/ajustes/ajuste-extension.jpg -->
-              <img style="object-position: 50% 60%" src="media/relleno/ajuste-extension.jpg"
-                   width="760" height="608"
-                   alt="Accesorio frontal de extensión de piernas con sus rodillos" loading="lazy" decoding="async">
+              <img style="object-position: 50% 55%" src="media/ajustes/ajuste-extension-800.jpg"
+                   srcset="media/ajustes/ajuste-extension-800.jpg 800w, media/ajustes/ajuste-extension.jpg 1200w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="1600"
+                   alt="Accesorio frontal de extensión de piernas del TX-11, con sus rodillos" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">04</span>
@@ -342,10 +342,10 @@
 
           <article class="versa-card" id="ajuste-plegado" data-versa-card="plegado" aria-labelledby="ajuste-plegado-t">
             <div class="versa-img">
-              <!-- Relleno: recorte de la foto del pack. PENDIENTE (opcional): media/ajustes/ajuste-plegado.jpg -->
-              <img style="object-position: 50% 50%" src="media/relleno/ajuste-plegado.jpg"
-                   width="700" height="560"
-                   alt="TX-11 con la estructura plegada" loading="lazy" decoding="async">
+              <img style="object-position: 50% 66%" src="media/ajustes/ajuste-plegado-800.jpg"
+                   srcset="media/ajustes/ajuste-plegado-800.jpg 800w, media/ajustes/ajuste-plegado.jpg 1200w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="1600"
+                   alt="TX-11 plegado y de pie" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">05</span>
@@ -366,12 +366,17 @@
        ===================================================================== -->
   <section class="film" id="video" aria-labelledby="film-titulo">
     <div class="film-frame">
-      <!-- Relleno: foto de perfil. PENDIENTE (opcional): póster del vídeo media/video/tx11-60s-poster.jpg -->
-      <img class="film-poster" style="object-position: 50% 64%"
-           src="media/producto/tx11-perfil.jpg"
-           srcset="media/producto/tx11-perfil-800.jpg 800w, media/producto/tx11-perfil.jpg 1096w"
-           sizes="(max-aspect-ratio: 1/1) 150vw, 100vw" width="1096" height="1435"
-           alt="" loading="lazy" decoding="async">
+      <!-- Fondo de la sección: vertical en pantallas verticales y horizontal en las apaisadas -->
+      <picture>
+        <source media="(min-aspect-ratio: 1/1)"
+                srcset="media/video/tx11-60s-poster-1200.jpg 1200w, media/video/tx11-60s-poster-1800.jpg 1800w, media/video/tx11-60s-poster.jpg 2400w"
+                sizes="100vw" width="2400" height="1800">
+        <img class="film-poster"
+             src="media/video/tx11-60s-poster-vertical-800.jpg"
+             srcset="media/video/tx11-60s-poster-vertical-800.jpg 800w, media/video/tx11-60s-poster-vertical.jpg 1600w"
+             sizes="100vw" width="1600" height="2133"
+             alt="" loading="lazy" decoding="async">
+      </picture>
       <div class="film-veil" aria-hidden="true"></div>
       <div class="film-content container">
         <p class="eyebrow reveal">TX-11</p>
@@ -397,7 +402,7 @@
 
 
   <!-- =====================================================================
-       7. ENTRENA — 5 bucles que solo se reproducen en pantalla
+       7. ENTRENA — 4 bucles que solo se reproducen en pantalla
        Cada vídeo se carga solo si existe su archivo; si no, se ve su portada.
        ===================================================================== -->
   <section class="train section" id="entrena" aria-labelledby="entrena-titulo">
@@ -412,56 +417,41 @@
       <li class="loop reveal">
         <figure>
           <div class="loop-media">
-            <!-- Relleno: foto de perfil. PENDIENTE: portada media/entreno/press-sentado-banda.jpg y su vídeo .mp4 -->
-            <img style="object-position: 62% 62%" src="media/producto/tx11-perfil-800.jpg" width="800" height="1047"
-                 alt="TX-11 de perfil, con el respaldo inclinado" loading="lazy" decoding="async">
-            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/press-sentado-banda.mp4"></video>
+            <img src="media/entreno/curl-predicador.jpg" width="800" height="1000"
+                 alt="Persona sentada en el TX-11 con los brazos apoyados en el soporte predicador" loading="lazy" decoding="async">
+            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/curl-predicador.mp4"></video>
           </div>
-          <figcaption>Press de hombro sentado con banda</figcaption>
+          <figcaption>Curl en predicador</figcaption>
         </figure>
       </li>
       <li class="loop reveal" style="--d: 80ms">
         <figure>
           <div class="loop-media">
-            <!-- Relleno: recorte de la foto de frente. PENDIENTE: portada media/entreno/remo-banda.jpg y su vídeo .mp4 -->
-            <img style="object-position: 50% 50%" src="media/relleno/entreno-remo.jpg" width="800" height="600"
-                 alt="Parte baja del TX-11 vista de frente: empuñaduras, rodillos y base" loading="lazy" decoding="async">
-            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/remo-banda.mp4"></video>
+            <img src="media/entreno/extension-piernas.jpg" width="800" height="1000"
+                 alt="Persona sentada en el TX-11 estirando las piernas contra los rodillos de extensión" loading="lazy" decoding="async">
+            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/extension-piernas.mp4"></video>
           </div>
-          <figcaption>Remo a una mano con banda</figcaption>
+          <figcaption>Extensión de piernas</figcaption>
         </figure>
       </li>
       <li class="loop reveal" style="--d: 160ms">
         <figure>
           <div class="loop-media">
-            <!-- Relleno: foto de frente. PENDIENTE: portada media/entreno/sentadilla-banco-banda.jpg y su vídeo .mp4 -->
-            <img style="object-position: 50% 62%" src="media/producto/tx11-frontal-800.jpg" width="800" height="1047"
-                 alt="TX-11 de frente, con la base y el reposapiés" loading="lazy" decoding="async">
-            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/sentadilla-banco-banda.mp4"></video>
+            <img src="media/entreno/abdominales-declive.jpg" width="800" height="1000"
+                 alt="Persona haciendo abdominales en el TX-11 con el respaldo en declive y los pies sujetos en los rodillos" loading="lazy" decoding="async">
+            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/abdominales-declive.mp4"></video>
           </div>
-          <figcaption>Sentadilla al banco con banda</figcaption>
+          <figcaption>Abdominales en declive</figcaption>
         </figure>
       </li>
       <li class="loop reveal" style="--d: 240ms">
         <figure>
           <div class="loop-media">
-            <!-- Relleno: recorte de la foto de perfil. PENDIENTE: portada media/entreno/pull-apart.jpg y su vídeo .mp4 -->
-            <img style="object-position: 50% 50%" src="media/relleno/entreno-pull-apart.jpg" width="700" height="875"
-                 alt="Respaldo inclinado y asiento del TX-11, vistos de perfil" loading="lazy" decoding="async">
-            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/pull-apart.mp4"></video>
+            <img src="media/entreno/sentado-banda.jpg" width="800" height="1000"
+                 alt="Persona sentada en el TX-11 tirando de dos bandas con asas" loading="lazy" decoding="async">
+            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/sentado-banda.mp4"></video>
           </div>
-          <figcaption>Separación de banda</figcaption>
-        </figure>
-      </li>
-      <li class="loop reveal" style="--d: 320ms">
-        <figure>
-          <div class="loop-media">
-            <!-- Relleno: recorte de la foto de frente. PENDIENTE: portada media/entreno/curl-sentado-banda.jpg y su vídeo .mp4 -->
-            <img style="object-position: 50% 40%" src="media/relleno/entreno-curl.jpg" width="600" height="750"
-                 alt="Almohadilla del predicador y empuñaduras del TX-11 vistas de frente" loading="lazy" decoding="async">
-            <video muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-loop="media/entreno/curl-sentado-banda.mp4"></video>
-          </div>
-          <figcaption>Curl sentado con banda</figcaption>
+          <figcaption>Con bandas, sentado</figcaption>
         </figure>
       </li>
     </ul>
@@ -479,10 +469,10 @@
       </header>
 
       <figure class="pack-hero reveal">
-        <img src="media/pack/pack-completo.jpg"
-             srcset="media/pack/pack-completo-800.jpg 800w, media/pack/pack-completo.jpg 1096w"
-             sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 100vw" width="1096" height="1435"
-             alt="Todo el contenido de la caja del TX-11 colocado en el suelo: el banco plegado y sus piezas, las cuatro bandas, la bolsa con el logo JR ATHLETICS, el manual, las herramientas y la tornillería"
+        <img src="media/pack/pack-completo-800.jpg"
+             srcset="media/pack/pack-completo-800.jpg 800w, media/pack/pack-completo.jpg 1600w"
+             sizes="(min-width: 1440px) 760px, (min-width: 1024px) 56vw, 100vw" width="1600" height="2133"
+             alt="Contenido de la caja del TX-11 sobre una mesa: el banco plegado y sus piezas, las bandas, la bolsa con el logo JR ATHLETICS y las herramientas de montaje"
              loading="lazy" decoding="async">
       </figure>
 
@@ -491,28 +481,26 @@
         <ol class="pack-list" data-lista="pack"></ol>
       </div>
 
-      <!-- Relleno: recortes de la foto del pack.
-           PENDIENTE (opcional): media/pack/bolsa-logo.jpg, bandas-4.jpg y herramientas.jpg -->
       <ul class="pack-thumbs" role="list">
         <li class="reveal">
           <figure>
-            <img src="media/relleno/pack-bolsa.jpg" width="205" height="256"
-                 alt="Bolsa de transporte de las bandas con el logo JR ATHLETICS" loading="lazy" decoding="async">
+            <img src="media/pack/bolsa-logo.jpg" width="600" height="750"
+                 alt="Bolsa de transporte de las bandas con el logo JR ATHLETICS, junto a las bandas" loading="lazy" decoding="async">
             <figcaption>Bolsa con logo</figcaption>
           </figure>
         </li>
         <li class="reveal" style="--d: 100ms">
           <figure>
-            <img src="media/relleno/pack-bandas.jpg" width="270" height="338"
-                 alt="Las cuatro bandas elásticas de resistencia en sus fundas: amarilla, negra, morada y roja" loading="lazy" decoding="async">
+            <img src="media/pack/bandas-4.jpg" width="600" height="750"
+                 alt="Las cuatro bandas elásticas de resistencia sobre el respaldo: amarilla, roja, negra y morada" loading="lazy" decoding="async">
             <figcaption><span data-cifra="bandas">4</span>&nbsp;bandas</figcaption>
           </figure>
         </li>
         <li class="reveal" style="--d: 200ms">
           <figure>
-            <img src="media/relleno/pack-herramientas.jpg" width="220" height="275"
-                 alt="Herramientas y tornillería para el montaje" loading="lazy" decoding="async">
-            <figcaption>Llave y tornillería</figcaption>
+            <img src="media/pack/herramientas.jpg" width="600" height="750"
+                 alt="Herramientas de montaje junto a su bolsa: llaves fijas, pasadores con anilla y piezas del banco" loading="lazy" decoding="async">
+            <figcaption>Herramientas</figcaption>
           </figure>
         </li>
       </ul>
@@ -674,10 +662,15 @@
        ===================================================================== -->
   <section class="final" id="comprar" aria-labelledby="final-titulo">
     <div class="final-media" aria-hidden="true">
-      <!-- Relleno: foto del pack (la sala con vistas al mar). PENDIENTE (opcional): media/marca/cierre.jpg -->
-      <img src="media/pack/pack-completo.jpg"
-           srcset="media/pack/pack-completo-800.jpg 800w, media/pack/pack-completo.jpg 1096w"
-           sizes="(max-aspect-ratio: 1/1) 150vw, 100vw" width="1096" height="1435" alt="" loading="lazy" decoding="async">
+      <!-- Foto de ambiente: vertical en pantallas verticales y horizontal en las apaisadas -->
+      <picture>
+        <source media="(min-aspect-ratio: 1/1)"
+                srcset="media/marca/cierre-1200.jpg 1200w, media/marca/cierre-1800.jpg 1800w, media/marca/cierre.jpg 2400w"
+                sizes="100vw" width="2400" height="1800">
+        <img src="media/marca/cierre-vertical-800.jpg"
+             srcset="media/marca/cierre-vertical-800.jpg 800w, media/marca/cierre-vertical.jpg 1600w"
+             sizes="100vw" width="1600" height="2133" alt="" loading="lazy" decoding="async">
+      </picture>
     </div>
     <div class="final-veil" aria-hidden="true"></div>
     <div class="wedge wedge--navy" aria-hidden="true"></div>

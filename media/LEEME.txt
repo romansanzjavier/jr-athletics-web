@@ -21,49 +21,52 @@ media/logo/
   apple-touch-icon.png, en la raíz) es el monograma sobre fondo casi negro.
 
 media/hero/
+  [YA] portada-vertical.jpg      Portada en pantallas verticales (móvil). 800, 1200 y 1600 px
+  [YA] portada-horizontal.jpg    Portada en pantallas apaisadas. 1000, 1400, 1800 y 2400 px
+  OJO: en móvil, el logo pequeño del respaldo queda escondido detrás del logo
+  grande gracias a unos números calculados para portada-vertical.jpg (están en
+  styles.css, apartado "1. Portada"). Si cambias esa foto, hay que recalcularlos.
   [FALTA] hero-loop.mp4            Bucle de portada, horizontal
   [FALTA] hero-loop-vertical.mp4   Bucle de portada, vertical (móvil)
 
 media/producto/
-  [YA] tx11-frontal.jpg      Foto principal: portada y sección TX-11
-  [YA] tx11-perfil.jpg       TX-11 (escritorio), vídeo y recortes de relleno
+  [YA] tx11-frontal.jpg      TX-11 de frente (sección TX-11 y buscadores). 800, 1200 y 1600 px
+  [YA] tx11-perfil.jpg       TX-11 con el respaldo inclinado (sección TX-11 en escritorio)
 
-media/detalles/            (ahora: recortes de las fotos en media/relleno/)
-  (opcional) detalle-logo.jpg, detalle-ribete.jpg, detalle-pasador.jpg, detalle-acolchado.jpg
+media/detalles/
+  [YA] detalle-logo.jpg, detalle-ribete.jpg, detalle-pasador.jpg, detalle-acolchado.jpg
 
-media/ajustes/             (ahora: fotos de perfil y frente, y recortes)
-  (opcional) ajuste-plano.jpg, ajuste-inclinado.jpg, ajuste-predicador.jpg,
-             ajuste-extension.jpg, ajuste-plegado.jpg
+media/ajustes/
+  [YA] ajuste-plano.jpg, ajuste-inclinado.jpg, ajuste-predicador.jpg,
+       ajuste-extension.jpg, ajuste-plegado.jpg   (800 y 1200 px)
 
 media/video/
-  [FALTA] tx11-60s.mp4             Vídeo del producto (unos 60 s)
-  (opcional) tx11-60s-poster.jpg   Ahora se usa la foto de perfil
+  [YA] tx11-60s-poster.jpg            Fondo de "Míralo de cerca" en pantallas apaisadas
+  [YA] tx11-60s-poster-vertical.jpg   El mismo fondo en pantallas verticales
+  [FALTA] tx11-60s.mp4                Vídeo del producto (unos 60 s)
 
-media/entreno/             (cada vídeo con su .jpg de portada del mismo nombre)
-  [FALTA] press-sentado-banda.mp4     + press-sentado-banda.jpg
-  [FALTA] remo-banda.mp4              + remo-banda.jpg
-  [FALTA] sentadilla-banco-banda.mp4  + sentadilla-banco-banda.jpg
-  [FALTA] pull-apart.mp4              + pull-apart.jpg
-  [FALTA] curl-sentado-banda.mp4      + curl-sentado-banda.jpg
+media/entreno/             (cada foto puede llevar su vídeo .mp4 del mismo nombre)
+  [YA] curl-predicador.jpg        [FALTA] curl-predicador.mp4
+  [YA] extension-piernas.jpg      [FALTA] extension-piernas.mp4
+  [YA] abdominales-declive.jpg    [FALTA] abdominales-declive.mp4
+  [YA] sentado-banda.jpg          [FALTA] sentado-banda.mp4
 
 media/pack/
-  [YA] pack-completo.jpg     Todo el contenido de la caja (y fondo de la llamada final)
-  (opcional) bolsa-logo.jpg, bandas-4.jpg, herramientas.jpg
-             (ahora: recortes de pack-completo.jpg en media/relleno/)
-  OJO: en pack-completo.jpg el manual pone "TL-15" y dibuja otro banco.
+  [YA] pack-completo.jpg     Todo el contenido de la caja (800 y 1600 px)
+  [YA] bolsa-logo.jpg, bandas-4.jpg, herramientas.jpg
 
 media/marca/
+  [YA] cierre.jpg            Fondo de la llamada final en pantallas apaisadas
+  [YA] cierre-vertical.jpg   El mismo fondo en pantallas verticales
   (opcional) tarjeta-lema.jpg   Ahora La marca muestra el logo vectorial sobre crema
-  (opcional) cierre.jpg         Ahora la llamada final usa pack-completo.jpg
 
 media/og/
-  [YA] og-image.jpg          1200 x 630 px, hecha con la foto de frente y el logo.
+  [YA] og-image.jpg          1200 x 630 px, hecha con la foto horizontal de portada y el logo.
 
-media/relleno/
-  Recortes de las tres fotos (frente, perfil y pack) que rellenan los huecos de
-  detalles, ajustes, entreno y pack hasta que haya fotos específicas. Cuando
-  llegue una foto específica, se cambia la ruta en index.html (cada hueco lleva
-  un comentario "Relleno: ... PENDIENTE (opcional): media/...").
+Todas las fotos son de la sesión de octubre de 2026 (iPhone, 4032 x 3024 px).
+Están pasadas a sRGB, con el mismo tratamiento de color y SIN metadatos (ni
+GPS ni datos de la cámara). Las de fondo (hero, video y marca) están un poco
+suavizadas y más comprimidas porque van bajo un velo oscuro.
 
 
 2. ESPECIFICACIONES DE ENTREGA
@@ -96,8 +99,9 @@ Vídeos .mp4 (portada, 60 s y entreno):
   se ve la foto de portada de ese hueco.
 
 Fotos .jpg:
-  Hay que cambiar la ruta en index.html. Cada hueco lleva encima un comentario
-  con el nombre exacto de la foto específica que puede ir ahí.
+  Si sustituyes una foto por otra con el MISMO nombre y las mismas medidas, no
+  hay que tocar nada más. Si cambian las medidas, actualiza width y height en
+  index.html.
 
 
 4. VERSIONES REDIMENSIONADAS (srcset)
@@ -106,12 +110,8 @@ Fotos .jpg:
 Para que el móvil no descargue fotos más grandes de lo necesario, cada foto
 grande se usa en varias anchuras.
 
-Ahora mismo (fotos de 1096 px de ancho):
-  tx11-frontal.jpg (1096 px) y tx11-frontal-800.jpg (800 px), y lo mismo con
-  tx11-perfil y pack-completo.
-
-  PENDIENTE: si tienes estas tres fotos en más resolución (2400 px en el lado
-  largo), súbelas: se verán más nítidas en pantallas grandes.
+Cada foto lleva sus anchuras en el nombre (-800, -1200...). La versión sin número
+es la más grande. En index.html, cada <img> lista todas en su srcset.
 
 Con fotos de 2400 px se generan tres versiones con el script incluido
 (necesita Python 3 y Pillow):
