@@ -1052,6 +1052,21 @@ a { color: inherit; }
   text-transform: uppercase;
   color: var(--cream-2);
 }
+.swatch-kg {
+  display: block;
+  margin-top: 6px;
+  font-size: clamp(0.9375rem, 0.85rem + 0.5vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  white-space: nowrap;
+}
+.swatch-level {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  color: var(--cream-2);
+}
 .bands-note { margin: 0; color: var(--cream-2); }
 
 .steps {

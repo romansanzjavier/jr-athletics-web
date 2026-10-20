@@ -46,6 +46,7 @@ var DATOS = {
     { etiqueta: 'Soporte para mancuerna', valor: 'Con collarín de sujeción' },
     { etiqueta: 'Seguridad', valor: 'Pasadores de seguridad' },
     { etiqueta: 'Acabado', valor: 'Ribetes en cian y logo JR grabado en el respaldo' },
+    { etiqueta: 'Bandas elásticas', valor: 'Amarilla de 2 a 7 kg, roja de 7 a 16 kg, negra de 11 a 29 kg y morada de 16 a 39 kg' },
     { etiqueta: 'Carga estática', valor: 'Soporta {carga} kg de carga estática' },
     // PENDIENTE: datos que aún no están confirmados (no se muestran mientras sean null)
     { etiqueta: 'Medidas', valor: null },
@@ -57,24 +58,26 @@ var DATOS = {
   /* Contenido de la caja (EL PACK y la pregunta "¿Qué incluye la caja?") */
   pack: [
     'El banco TX-11 con todas sus piezas',
-    '{bandas} bandas elásticas de resistencia de distinta dureza: amarilla, roja, negra y morada',
+    '{bandas} bandas elásticas de resistencia, de la más suave a la más fuerte: amarilla (2 a 7 kg), roja (7 a 16 kg), negra (11 a 29 kg) y morada (16 a 39 kg)',
     'Bolsa de transporte de las bandas con el logo JR ATHLETICS',
     'Manual de usuario impreso en español',
     'Llave fija y toda la tornillería para el montaje'
   ],
 
-  /* Bandas: color y muestra. "resistencia" y "dureza" están PENDIENTES:
-     mientras valgan null no se muestran. El orden de la lista NO indica dureza. */
+  /* Bandas, de la más suave a la más fuerte. La resistencia está pasada a kilos
+     desde las libras del fabricante (1 lb = 0,4536 kg) y redondeada al kilo:
+     amarilla 5-15 lb, roja 15-35 lb, negra 25-65 lb, morada 35-85 lb.
+     Si "dureza" o "resistencia" valen null, no se muestran. */
   bandas: [
-    { color: 'Amarilla', muestra: '#e9b02c', dureza: null, resistencia: null },
-    { color: 'Roja',     muestra: '#c8242c', dureza: null, resistencia: null },
-    { color: 'Negra',    muestra: '#0c0c0e', dureza: null, resistencia: null },
-    { color: 'Morada',   muestra: '#6a3d9a', dureza: null, resistencia: null }
+    { color: 'Amarilla', muestra: '#e9b02c', dureza: 'Suave',      resistencia: '2–7 kg' },
+    { color: 'Roja',     muestra: '#c8242c', dureza: 'Media',      resistencia: '7–16 kg' },
+    { color: 'Negra',    muestra: '#0c0c0e', dureza: 'Fuerte',     resistencia: '11–29 kg' },
+    { color: 'Morada',   muestra: '#6a3d9a', dureza: 'Muy fuerte', resistencia: '16–39 kg' }
   ],
 
   /* Datos aún sin confirmar. No se muestran en ninguna parte de la web.
      PENDIENTE: medidas, peso del producto, peso máximo de usuario,
-     resistencia de cada banda, material de las bandas, precio y garantía. */
+     material de las bandas, precio y garantía. */
   pendientes: {
     medidas: null,
     pesoProducto: null,
@@ -183,6 +186,18 @@ var DATOS = {
         name.textContent = b.color;
         li.appendChild(chip);
         li.appendChild(name);
+        if (b.resistencia) {
+          var kg = document.createElement('span');
+          kg.className = 'swatch-kg';
+          kg.textContent = b.resistencia;
+          li.appendChild(kg);
+        }
+        if (b.dureza) {
+          var level = document.createElement('span');
+          level.className = 'swatch-level';
+          level.textContent = b.dureza;
+          li.appendChild(level);
+        }
         list.appendChild(li);
       });
     });
