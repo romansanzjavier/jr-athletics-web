@@ -68,12 +68,13 @@ media/og/
   [YA] og-image.jpg          1200 x 630 px, hecha con la foto de portada y el logo.
 
 Las fotos son REALES: la sesión de estudio del fotógrafo de noviembre de 2026
-(carpeta "SELECCION WEB JR - FOTOS REALES" de Google Drive). No hay montajes ni
-imágenes hechas con IA. Están en sRGB y SIN metadatos (ni GPS ni datos de la
-cámara). Los cojines azulados por el reflejo de la ventana (detalle del logo y
-del acolchado) llevan el azul corregido, y al detalle del ribete se le han
-quitado dos motas de polvo del sensor.
-De momento salen de la versión web del fotógrafo (1024 px de ancho). Cuando
+(carpeta "SELECCION WEB JR - FOTOS REALES" de Google Drive), salvo la del banco
+plegado y de pie (ajuste-plegado), que es una foto real hecha con el móvil
+(IMG_4404). No hay montajes ni imágenes hechas con IA. Están en sRGB y SIN
+metadatos (ni GPS ni datos de la cámara). Los cojines azulados por el reflejo
+de la ventana (detalle del logo y del acolchado) llevan el azul corregido, y al
+detalle del ribete se le han quitado dos motas de polvo del sensor.
+De momento las del fotógrafo salen de su versión web (1024 px de ancho). Cuando
 estén las copias de 3000 px, se generan otra vez con los mismos nombres y la
 web gana nitidez sin tocar nada más.
 
