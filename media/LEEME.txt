@@ -28,8 +28,12 @@ media/hero/
   texto nunca tapa el banco. Los números están en styles.css, apartado "1. Portada"
   (el banco ocupa de 25 % a 80 % de la altura de la foto). Si cambias la foto,
   revísalos.
-  [FALTA] hero-loop.mp4            Bucle de portada, horizontal
-  [FALTA] hero-loop-vertical.mp4   Bucle de portada, vertical (móvil)
+  [YA] hero-loop.mp4               Vídeo del banco de fondo (42 s, sin sonido), horizontal.
+                                   En pantallas apaisadas ocupa toda la portada
+  [YA] hero-loop-vertical.mp4      El mismo vídeo recortado en vertical (móvil)
+  Salen de "JR Athletics - VIDEO BANCO.mov" (carpeta de Drive "Video JR Athletics,
+  Banco de Musculación"). La foto de portada se ve mientras carga el vídeo y cuando
+  no se reproduce (reducir movimiento o ahorro de datos).
 
 media/producto/
   [YA] tx11-frontal.jpg      TX-11 de 3/4 con el respaldo inclinado (sección TX-11 y buscadores)
@@ -43,9 +47,16 @@ media/ajustes/
        ajuste-extension.jpg, ajuste-plegado.jpg   (cuadradas; 800 px y la grande)
 
 media/video/
-  [YA] tx11-60s-poster.jpg            Fondo de "Míralo de cerca" en pantallas apaisadas
-  [YA] tx11-60s-poster-vertical.jpg   El mismo fondo en pantallas verticales
-  [FALTA] tx11-60s.mp4                Vídeo del producto (unos 60 s)
+  [YA] tx11-video.mp4                 Vídeo del banco entero y con sonido (botón "Ver el
+                                      vídeo" de la portada)
+  [YA] tx11-video-poster.jpg          Su imagen de espera
+  [YA] montaje.mp4                    Montaje en cámara rápida, con sonido (botón "Ver el
+                                      montaje", sección Montaje, al final de la página)
+  [YA] montaje-loop.mp4               El montaje de fondo de esa sección (720p, sin sonido)
+  [YA] montaje-poster-1600.jpg (y -1000)   Fondo de la sección Montaje en pantallas apaisadas
+  [YA] montaje-poster-vertical.jpg    El mismo fondo en pantallas verticales
+  Salen de "JR Athletics - VIDEO BANCO.mov" y "JR Athletics - Set Up MONTAJE.mov".
+  El sonido está nivelado a -16 LUFS para que no suene más fuerte que otras webs.
 
 media/entreno/             (cada foto puede llevar su vídeo .mp4 del mismo nombre)
   [YA] curl-predicador.jpg        [FALTA] curl-predicador.mp4
@@ -94,15 +105,15 @@ Bucles (portada y entreno)
   - SIN pista de audio.
   - Menos de 8 MB cada uno.
 
-Vídeo de 60 s
-  - MP4 H.264, 1080p.
+Vídeos con sonido (ventana "Ver el vídeo" / "Ver el montaje")
+  - MP4 H.264, 1080p, sonido AAC.
   - Menos de 25 MB.
 
 
 3. QUÉ PASA AL SUBIR CADA ARCHIVO
 ---------------------------------
 
-Vídeos .mp4 (portada, 60 s y entreno):
+Vídeos .mp4 (portada, banco, montaje y entreno):
   1. Sube el archivo a su carpeta con el nombre exacto.
   2. En main.js, en el bloque DATOS > videos, cambia su false por true.
   Mientras esté en false, la web no lo pide (así no hay errores en la consola) y

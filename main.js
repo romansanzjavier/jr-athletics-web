@@ -91,9 +91,11 @@ var DATOS = {
      su false por true. Mientras esté en false, la web no lo pide (así no hay
      errores en la consola) y se ve la foto de portada de ese hueco. */
   videos: {
-    'media/hero/hero-loop.mp4': false,                 // portada, horizontal
-    'media/hero/hero-loop-vertical.mp4': false,        // portada, vertical (móvil)
-    'media/video/tx11-60s.mp4': false,                 // vídeo del producto (botón "Ver vídeo")
+    'media/hero/hero-loop.mp4': true,                  // portada, horizontal (vídeo del banco, sin sonido)
+    'media/hero/hero-loop-vertical.mp4': true,         // portada, vertical (móvil)
+    'media/video/tx11-video.mp4': true,                // vídeo del banco con sonido (botón "Ver el vídeo")
+    'media/video/montaje.mp4': true,                   // montaje con sonido (botón "Ver el montaje")
+    'media/video/montaje-loop.mp4': true,              // montaje de fondo, sin sonido
     'media/entreno/curl-predicador.mp4': false,
     'media/entreno/press-hombros.mp4': false,
     'media/entreno/extension-piernas.mp4': false,
@@ -102,12 +104,18 @@ var DATOS = {
     'media/entreno/remo.mp4': false
   },
 
-  /* Vídeo de 60 s en YouTube (opcional, en lugar del archivo propio). Pon solo el
-     ID del vídeo (lo que va tras "v=" en la URL): el reproductor (youtube-nocookie)
+  /* Vídeos que se abren en ventana, enteros y con sonido:
+     - videoBanco: botón "Ver el vídeo" de la portada.
+     - videoMontaje: botón "Ver el montaje" (sección Montaje, al final).
+     videoYouTube (opcional): el ID de un vídeo de YouTube (lo que va tras "v=" en
+     la URL) para usarlo en lugar de videoBanco. El reproductor (youtube-nocookie)
      se carga SOLO al pulsar play. Si lo usas, descomenta el párrafo de YouTube en
      privacidad.html. */
   multimedia: {
-    video60: 'media/video/tx11-60s.mp4',
+    videoBanco: 'media/video/tx11-video.mp4',
+    posterBanco: 'media/video/tx11-video-poster.jpg',
+    videoMontaje: 'media/video/montaje.mp4',
+    posterMontaje: 'media/video/montaje-poster-1600.jpg',
     videoYouTube: ''
   }
 };
@@ -319,6 +327,7 @@ var DATOS = {
      - Se pausan fuera de pantalla y cuando la pestaña no está visible.
      --------------------------------------------------------------------- */
   var activeVideos = [];
+  var filmOpen = false;   // mientras se ve un vídeo en la ventana, los de fondo esperan
 
   function videoReady(path) {
     return !!(path && DATOS.videos && DATOS.videos[path] === true);
@@ -359,9 +368,14 @@ var DATOS = {
       video.load();
     }
 
+    var hero = video.closest('.hero');
     video.addEventListener('error', tryNext);
-    video.addEventListener('canplay', function () { if (video._inView !== false) playSafe(video); });
-    video.addEventListener('playing', function () { video.classList.add('is-playing'); });
+    video.addEventListener('canplay', function () { if (video._inView !== false && !filmOpen) playSafe(video); });
+    video.addEventListener('playing', function () {
+      video.classList.add('is-playing');
+      // En pantallas apaisadas el vídeo ocupa toda la portada: se oscurece el lado del texto
+      if (hero) hero.classList.add('has-video');
+    });
     activeVideos.push(video);
     watchVisibility(video, function () { if (video.src && video.paused) playSafe(video); });
 
@@ -382,7 +396,7 @@ var DATOS = {
           video.src = video.getAttribute('data-loop');
           video.load();
         }
-        playSafe(video);
+        if (!filmOpen) playSafe(video);
       });
     });
   }
@@ -391,43 +405,60 @@ var DATOS = {
     activeVideos.forEach(function (v) {
       if (!v.isConnected) return;
       if (document.hidden) v.pause();
-      else if (v._inView && v.getAttribute('src')) playSafe(v);
+      else if (v._inView && v.getAttribute('src') && !filmOpen) playSafe(v);
     });
   });
 
-  /* Vídeo de 60 s en ventana modal (se cierra con Escape o con un clic fuera) */
+  /* Vídeos enteros y con sonido en una ventana (se cierra con Escape, con la X o
+     con un clic fuera). Cada botón [data-film-open] dice qué vídeo abre:
+     "banco" (portada) o "montaje" (sección Montaje). */
   function film() {
-    var openBtn = $('[data-film-open]');
     var modal = $('[data-film-modal]');
     var player = $('[data-film-player]');
     var closeBtn = $('[data-film-close]');
-    if (!openBtn || !modal || !player) return;
+    var buttons = $$('[data-film-open]');
+    if (!modal || !player || !buttons.length) return;
 
-    var ytId = (DATOS.multimedia.videoYouTube || '').trim();
-    var file = DATOS.multimedia.video60;
+    var m = DATOS.multimedia;
+    var sources = {
+      banco: { file: m.videoBanco, poster: m.posterBanco, title: 'Vídeo del TX-11', youtube: (m.videoYouTube || '').trim() },
+      montaje: { file: m.videoMontaje, poster: m.posterMontaje, title: 'Montaje del TX-11' }
+    };
+    var lastBtn = null;
+    var pausedBg = [];
 
-    function enable() { openBtn.hidden = false; }
+    // Cada botón solo aparece si su vídeo existe (YouTube o archivo marcado como disponible).
+    buttons.forEach(function (btn) {
+      var src = sources[btn.getAttribute('data-film-open')];
+      if (!src || !(src.youtube || videoReady(src.file))) return;
+      btn.hidden = false;
+      btn.addEventListener('click', function () { open(src, btn); });
+    });
 
-    // El botón "Ver vídeo" solo aparece si hay vídeo (YouTube o archivo marcado como disponible).
-    if (ytId || videoReady(file)) enable();
-
-    function open() {
+    function open(src, btn) {
+      lastBtn = btn;
       player.textContent = '';
-      if (ytId) {
+      modal.setAttribute('aria-label', src.title);
+      // Los vídeos de fondo se pausan mientras se ve este
+      filmOpen = true;
+      pausedBg = activeVideos.filter(function (v) { return v.isConnected && !v.paused; });
+      pausedBg.forEach(function (v) { v.pause(); });
+
+      if (src.youtube) {
         var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(ytId) + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-        iframe.title = 'Vídeo del TX-11';
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(src.youtube) + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+        iframe.title = src.title;
         iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
         iframe.allowFullscreen = true;
         player.appendChild(iframe);
       } else {
         var v = document.createElement('video');
-        v.src = file;
+        v.src = src.file;
         v.controls = true;
         v.playsInline = true;
         v.preload = 'auto';
-        var poster = $('.film-poster');
-        if (poster && poster.currentSrc) v.poster = poster.currentSrc;
+        if (src.poster) v.poster = src.poster;
+        v.setAttribute('aria-label', src.title);
         player.appendChild(v);
         playSafe(v);
       }
@@ -443,9 +474,11 @@ var DATOS = {
 
     modal.addEventListener('close', function () {
       player.textContent = '';   // detiene y descarga el vídeo
-      openBtn.focus();
+      filmOpen = false;
+      pausedBg.forEach(function (v) { if (v._inView !== false && !document.hidden) playSafe(v); });
+      pausedBg = [];
+      if (lastBtn) lastBtn.focus();
     });
-    openBtn.addEventListener('click', open);
     if (closeBtn) closeBtn.addEventListener('click', close);
     // Clic fuera del vídeo (en el fondo oscuro)
     modal.addEventListener('click', function (e) {

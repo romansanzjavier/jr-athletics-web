@@ -133,9 +133,10 @@
              sizes="(min-aspect-ratio: 1/1) 56vw, 100vw" width="1024" height="1536"
              alt="" fetchpriority="high" decoding="async">
       </picture>
-      <!-- Vídeo en bucle: main.js lo carga solo si existe el archivo, después de la imagen,
-           y nunca con "reducir movimiento" o "ahorro de datos". En móvil vertical prueba
-           primero la versión vertical. -->
+      <!-- Vídeo del banco (42 s, sin sonido) de fondo: main.js lo carga solo si existe el
+           archivo, después de la imagen, y nunca con "reducir movimiento" o "ahorro de datos".
+           En pantallas apaisadas ocupa toda la portada; en móvil vertical usa el recorte
+           vertical. El botón "Ver el vídeo" lo abre entero y con sonido. -->
       <video class="hero-video" muted loop playsinline preload="none" tabindex="-1"
              data-hero-video
              data-src="media/hero/hero-loop.mp4"
@@ -161,6 +162,14 @@
         <a class="btn btn--cyan" href="https://www.amazon.es/dp/B0HGLFN5TQ" target="_blank" rel="noopener noreferrer" data-amazon data-cta="hero">Comprar en Amazon<span class="sr-only"> (se abre en una pestaña nueva)</span></a>
         <a class="btn btn--ghost" href="#tx11">Descubrir el TX-11</a>
       </div>
+
+      <!-- Abre el vídeo del banco entero y con sonido (aparece solo si existe el archivo) -->
+      <button class="hero-play" type="button" aria-haspopup="dialog" data-film-open="banco" hidden>
+        <span class="hero-play-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="40" height="40" focusable="false"><circle cx="32" cy="32" r="31" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M26 21.5 44 32 26 42.5Z" fill="currentColor"/></svg>
+        </span>
+        <span>Ver el vídeo</span>
+      </button>
     </div>
 
     <div class="scroll-cue" aria-hidden="true"><span></span></div>
@@ -355,48 +364,6 @@
         </div>
       </div>
     </div>
-  </section>
-
-
-  <!-- =====================================================================
-       6. VÍDEO DEL PRODUCTO
-       El botón de play solo aparece si existe media/video/tx11-60s.mp4
-       (o si pones un ID de YouTube en main.js → DATOS.multimedia.videoYouTube).
-       ===================================================================== -->
-  <section class="film" id="video" aria-labelledby="film-titulo">
-    <div class="film-frame">
-      <!-- Fondo de la sección: vertical en pantallas verticales y horizontal en las apaisadas -->
-      <picture>
-        <source media="(min-aspect-ratio: 1/1)"
-                srcset="media/video/tx11-60s-poster-1000.jpg 1000w, media/video/tx11-60s-poster.jpg 1024w"
-                sizes="100vw" width="1024" height="683">
-        <img class="film-poster"
-             src="media/video/tx11-60s-poster-vertical-800.jpg"
-             srcset="media/video/tx11-60s-poster-vertical-800.jpg 800w, media/video/tx11-60s-poster-vertical.jpg 1024w"
-             sizes="100vw" width="1024" height="1536"
-             alt="" loading="lazy" decoding="async">
-      </picture>
-      <div class="film-veil" aria-hidden="true"></div>
-      <div class="film-content container">
-        <p class="eyebrow reveal">TX-11</p>
-        <h2 class="h2 reveal" id="film-titulo">Míralo de cerca.</h2>
-        <button class="play reveal" type="button" aria-haspopup="dialog" data-film-open hidden>
-          <span class="play-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="64" height="64" focusable="false"><circle cx="32" cy="32" r="31" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M26 21.5 44 32 26 42.5Z" fill="currentColor"/></svg>
-          </span>
-          <span class="play-label">Ver vídeo</span>
-        </button>
-      </div>
-    </div>
-
-    <dialog class="film-modal" aria-label="Vídeo del TX-11" data-film-modal>
-      <div class="film-modal-inner">
-        <button class="film-close" type="button" aria-label="Cerrar vídeo" data-film-close>
-          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-        </button>
-        <div class="film-player" data-film-player></div>
-      </div>
-    </dialog>
   </section>
 
 
@@ -677,6 +644,43 @@
 
 
   <!-- =====================================================================
+       12b. MONTAJE — vídeo del montaje en cámara rápida
+       De fondo, un bucle sin sonido (montaje-loop.mp4) que solo se reproduce en
+       pantalla. El botón "Ver el montaje" lo abre entero y con sonido (montaje.mp4).
+       Sin vídeo, se ve la foto del banco ya montado.
+       ===================================================================== -->
+  <section class="film" id="montaje" aria-labelledby="montaje-titulo">
+    <div class="film-frame">
+      <!-- Fondo: vertical en pantallas verticales y horizontal en las apaisadas -->
+      <picture>
+        <source media="(min-aspect-ratio: 1/1)"
+                srcset="media/video/montaje-poster-1000.jpg 1000w, media/video/montaje-poster-1600.jpg 1600w"
+                sizes="100vw" width="1600" height="900">
+        <img class="film-poster"
+             src="media/video/montaje-poster-vertical.jpg"
+             width="720" height="1080"
+             alt="" loading="lazy" decoding="async">
+      </picture>
+      <video class="film-loop" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
+             data-loop="media/video/montaje-loop.mp4"></video>
+      <div class="film-veil" aria-hidden="true"></div>
+      <div class="film-content container">
+        <p class="eyebrow reveal">Montaje</p>
+        <h2 class="h2 reveal" id="montaje-titulo">Así se monta.</h2>
+        <p class="film-lead reveal" style="--d: 100ms">Manual impreso en español, llave fija y tornillería incluidos.</p>
+        <button class="play reveal" style="--d: 200ms" type="button" aria-haspopup="dialog" data-film-open="montaje" hidden>
+          <span class="play-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="64" height="64" focusable="false"><circle cx="32" cy="32" r="31" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M26 21.5 44 32 26 42.5Z" fill="currentColor"/></svg>
+          </span>
+          <span class="play-label">Ver el montaje</span>
+        </button>
+        <p class="film-note reveal" style="--d: 300ms">Vídeo acelerado</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
        13. LLAMADA FINAL
        ===================================================================== -->
   <section class="final" id="comprar" aria-labelledby="final-titulo">
@@ -743,6 +747,17 @@
       <p class="contact-note reveal">La atención de pedidos se gestiona a través de Amazon.</p>
     </div>
   </section>
+
+  <!-- Ventana para ver los vídeos enteros y con sonido (portada y montaje).
+       Se cierra con Escape, con la X o con un clic fuera del vídeo. -->
+  <dialog class="film-modal" aria-label="Vídeo" data-film-modal>
+    <div class="film-modal-inner">
+      <button class="film-close" type="button" aria-label="Cerrar vídeo" data-film-close>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <div class="film-player" data-film-player></div>
+    </div>
+  </dialog>
 
 </main>
 
