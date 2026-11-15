@@ -1086,7 +1086,8 @@ a { color: inherit; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
-.pack-thumbs img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: rgba(0, 0, 0, 0.2); }
+/* Miniaturas: cada pieza entera, recortada sobre fondo blanco (4:5 exacto, no se corta nada) */
+.pack-thumbs img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #fff; }
 .pack-thumbs figcaption { color: rgba(241, 238, 232, 0.82); letter-spacing: 0.12em; }
 
 .pack-list {
