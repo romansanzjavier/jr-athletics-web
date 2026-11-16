@@ -501,6 +501,27 @@ a { color: inherit; }
   .nav-extra { display: none; }
 }
 
+/* Botón "Comprar en Amazon" siempre visible en la cabecera (tableta y ordenador).
+   En el móvil no se muestra: allí ya está la barra de compra de abajo. */
+.header-buy { display: none; }
+@media (min-width: 768px) {
+  .header-buy {
+    display: inline-flex;
+    order: 2;
+    min-height: 40px;
+    margin: 0 12px 0 auto;
+    padding: 0 1.1rem;
+    font-size: 0.6875rem;
+  }
+  .menu-toggle { order: 3; }
+  /* Con el menú abierto se esconde: el menú ya lleva su propio botón de compra */
+  .menu-open .header-buy { visibility: hidden; }
+}
+@media (min-width: 1024px) {
+  .site-nav { margin-left: auto; }
+  .header-buy { margin: 0 0 0 clamp(24px, 2.6vw, 44px); }
+}
+
 
 /* 8. SECCIONES ------------------------------------------------------------- */
 
