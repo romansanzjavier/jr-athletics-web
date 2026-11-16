@@ -40,7 +40,13 @@ media/producto/
   [YA] tx11-perfil.jpg       El banco en uso: curl en el predicador (sección TX-11 en ordenador)
 
 media/detalles/
-  [YA] detalle-logo.jpg, detalle-ribete.jpg, detalle-pasador.jpg, detalle-acolchado.jpg
+  [YA] detalle-logo.jpg, detalle-ribete.jpg, detalle-pasador.jpg, detalle-acolchado.jpg,
+       detalle-ajuste.jpg (la mano tirando del pomo para cambiar la inclinación)
+
+media/bandas/
+  [YA] bandas-mano.jpg (y -800, -1600)   La banda morada en la mano, junto a los colores
+                                          y los kilos de las bandas. Recortada para que
+                                          no salga el logo del pantalón
 
 media/ajustes/
   [YA] ajuste-plano.jpg, ajuste-inclinado.jpg, ajuste-predicador.jpg,
