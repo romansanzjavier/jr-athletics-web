@@ -282,50 +282,51 @@
           <h2 class="h2 h2--side" id="versa-titulo">Ajústalo. Entrena. Pliégalo.</h2>
         </header>
         <div class="versa-tabs" role="group" aria-label="Elige una posición">
-          <button class="versa-tab" type="button" aria-pressed="true" aria-controls="ajuste-plano" data-versa-tab="plano"><span class="num">01</span> Plano</button>
-          <button class="versa-tab" type="button" aria-pressed="false" aria-controls="ajuste-inclinado" data-versa-tab="inclinado"><span class="num">02</span> Inclinado</button>
+          <button class="versa-tab" type="button" aria-pressed="true" aria-controls="ajuste-inclinado" data-versa-tab="inclinado"><span class="num">01</span> Inclinado</button>
+          <button class="versa-tab" type="button" aria-pressed="false" aria-controls="ajuste-plano" data-versa-tab="plano"><span class="num">02</span> Plano</button>
           <button class="versa-tab" type="button" aria-pressed="false" aria-controls="ajuste-predicador" data-versa-tab="predicador"><span class="num">03</span> Predicador</button>
           <button class="versa-tab" type="button" aria-pressed="false" aria-controls="ajuste-extension" data-versa-tab="extension"><span class="num">04</span> Extensión de piernas</button>
-          <button class="versa-tab" type="button" aria-pressed="false" aria-controls="ajuste-plegado" data-versa-tab="plegado"><span class="num">05</span> Plegado</button>
+          <button class="versa-tab" type="button" aria-pressed="false" aria-controls="ajuste-declinado" data-versa-tab="declinado"><span class="num">05</span> Declinado</button>
+          <button class="versa-tab" type="button" aria-pressed="false" aria-controls="ajuste-plegado" data-versa-tab="plegado"><span class="num">06</span> Plegado</button>
         </div>
       </div>
 
       <div class="versa-stage">
         <div class="versa-track" data-versa-track>
-          <article class="versa-card is-active" id="ajuste-plano" data-versa-card="plano" aria-labelledby="ajuste-plano-t">
+          <article class="versa-card is-active" id="ajuste-inclinado" data-versa-card="inclinado" aria-labelledby="ajuste-inclinado-t">
             <div class="versa-img">
-              <img style="object-position: 50% 50%" src="media/ajustes/ajuste-plano-800.jpg"
-                   srcset="media/ajustes/ajuste-plano-800.jpg 800w, media/ajustes/ajuste-plano-1600.jpg 1600w, media/ajustes/ajuste-plano.jpg 2400w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="2400"
-                   alt="TX-11 con el respaldo y el asiento en plano" loading="lazy" decoding="async">
+              <img src="media/ajustes/ajuste-inclinado-800.jpg"
+                   srcset="media/ajustes/ajuste-inclinado-800.jpg 800w, media/ajustes/ajuste-inclinado-1600.jpg 1600w, media/ajustes/ajuste-inclinado.jpg 2400w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="1800"
+                   alt="TX-11 con el respaldo inclinado, el soporte predicador y los rodillos de extensión de piernas, junto a las mancuernas, las bandas y la bolsa" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">01</span>
-              <h3 class="versa-title" id="ajuste-plano-t">Plano</h3>
-              <p>Uso en plano. Acolchado de alta densidad.</p>
-            </div>
-          </article>
-
-          <article class="versa-card" id="ajuste-inclinado" data-versa-card="inclinado" aria-labelledby="ajuste-inclinado-t">
-            <div class="versa-img">
-              <img style="object-position: 50% 50%" src="media/ajustes/ajuste-inclinado-800.jpg"
-                   srcset="media/ajustes/ajuste-inclinado-800.jpg 800w, media/ajustes/ajuste-inclinado-1600.jpg 1600w, media/ajustes/ajuste-inclinado.jpg 2400w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="2400"
-                   alt="TX-11 con el respaldo inclinado, junto a las mancuernas, las bandas y la bolsa" loading="lazy" decoding="async">
-            </div>
-            <div class="versa-info">
-              <span class="num">02</span>
               <h3 class="versa-title" id="ajuste-inclinado-t">Inclinado</h3>
               <p>Respaldo regulable en <span data-cifra="respaldo">6</span>&nbsp;posiciones.</p>
             </div>
           </article>
 
+          <article class="versa-card" id="ajuste-plano" data-versa-card="plano" aria-labelledby="ajuste-plano-t">
+            <div class="versa-img">
+              <img src="media/ajustes/ajuste-plano-800.jpg"
+                   srcset="media/ajustes/ajuste-plano-800.jpg 800w, media/ajustes/ajuste-plano-1600.jpg 1600w, media/ajustes/ajuste-plano.jpg 2400w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="1800"
+                   alt="TX-11 con el respaldo y el asiento en plano" loading="lazy" decoding="async">
+            </div>
+            <div class="versa-info">
+              <span class="num">02</span>
+              <h3 class="versa-title" id="ajuste-plano-t">Plano</h3>
+              <p>Uso en plano. Acolchado de alta densidad.</p>
+            </div>
+          </article>
+
           <article class="versa-card" id="ajuste-predicador" data-versa-card="predicador" aria-labelledby="ajuste-predicador-t">
             <div class="versa-img">
-              <img style="object-position: 50% 50%" src="media/ajustes/ajuste-predicador-800.jpg"
+              <img src="media/ajustes/ajuste-predicador-800.jpg"
                    srcset="media/ajustes/ajuste-predicador-800.jpg 800w, media/ajustes/ajuste-predicador-1600.jpg 1600w, media/ajustes/ajuste-predicador.jpg 2400w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="2400"
-                   alt="TX-11 con el respaldo vertical y el soporte predicador montado para curl de bíceps" loading="lazy" decoding="async">
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="1800"
+                   alt="TX-11 con el respaldo vertical y el soporte predicador para curl de bíceps en primer plano" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">03</span>
@@ -336,10 +337,10 @@
 
           <article class="versa-card" id="ajuste-extension" data-versa-card="extension" aria-labelledby="ajuste-extension-t">
             <div class="versa-img">
-              <img style="object-position: 50% 50%" src="media/ajustes/ajuste-extension-800.jpg"
+              <img src="media/ajustes/ajuste-extension-800.jpg"
                    srcset="media/ajustes/ajuste-extension-800.jpg 800w, media/ajustes/ajuste-extension-1600.jpg 1600w, media/ajustes/ajuste-extension.jpg 2400w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="2400"
-                   alt="TX-11 con el accesorio de extensión de piernas y sus rodillos en la parte delantera" loading="lazy" decoding="async">
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="1800"
+                   alt="TX-11 con el accesorio de extensión de piernas y sus rodillos en primer plano, el respaldo inclinado y el soporte predicador" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">04</span>
@@ -348,19 +349,34 @@
             </div>
           </article>
 
-          <article class="versa-card" id="ajuste-plegado" data-versa-card="plegado" aria-labelledby="ajuste-plegado-t">
+          <article class="versa-card" id="ajuste-declinado" data-versa-card="declinado" aria-labelledby="ajuste-declinado-t">
             <div class="versa-img">
-              <img style="object-position: 50% 50%" src="media/ajustes/ajuste-plegado-800.jpg"
-                   srcset="media/ajustes/ajuste-plegado-800.jpg 800w, media/ajustes/ajuste-plegado.jpg 1200w"
-                   sizes="(min-width: 1024px) 58vw, 86vw" width="1200" height="1200"
-                   alt="TX-11 plegado y de pie, listo para guardar" loading="lazy" decoding="async">
+              <img src="media/ajustes/ajuste-declinado-800.jpg"
+                   srcset="media/ajustes/ajuste-declinado-800.jpg 800w, media/ajustes/ajuste-declinado-1600.jpg 1600w, media/ajustes/ajuste-declinado.jpg 2400w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="1800"
+                   alt="TX-11 en posición declinada, con el soporte predicador y los rodillos de extensión de piernas" loading="lazy" decoding="async">
             </div>
             <div class="versa-info">
               <span class="num">05</span>
+              <h3 class="versa-title" id="ajuste-declinado-t">Declinado</h3>
+              <p>Posición declinada.</p>
+            </div>
+          </article>
+
+          <article class="versa-card" id="ajuste-plegado" data-versa-card="plegado" aria-labelledby="ajuste-plegado-t">
+            <div class="versa-img">
+              <img src="media/ajustes/ajuste-plegado-800.jpg"
+                   srcset="media/ajustes/ajuste-plegado-800.jpg 800w, media/ajustes/ajuste-plegado-1600.jpg 1600w, media/ajustes/ajuste-plegado.jpg 2400w"
+                   sizes="(min-width: 1024px) 58vw, 86vw" width="2400" height="1800"
+                   alt="TX-11 plegado y de pie, sobre fondo blanco, listo para guardar" loading="lazy" decoding="async">
+            </div>
+            <div class="versa-info">
+              <span class="num">06</span>
               <h3 class="versa-title" id="ajuste-plegado-t">Plegado</h3>
               <p>Se pliega. Tú no. Estructura plegable para guardarlo.</p>
             </div>
           </article>
+
         </div>
       </div>
     </div>
