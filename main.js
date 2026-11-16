@@ -34,7 +34,9 @@ var DATOS = {
   },
 
   /* Tabla de especificaciones. {respaldo}, {predicador} y {carga} se sustituyen
-     por las cifras de arriba. Las filas con valor null no se muestran. */
+     por las cifras de arriba. Las filas con valor null no se muestran.
+     La carga estática no va en la tabla porque ya es el titular de la sección, y
+     las bandas tampoco porque tienen su propia sección justo encima. */
   especificaciones: [
     { etiqueta: 'Respaldo', valor: 'Regulable en {respaldo} posiciones' },
     { etiqueta: 'Posiciones de uso', valor: 'Plano e inclinado' },
@@ -46,8 +48,6 @@ var DATOS = {
     { etiqueta: 'Soporte para mancuerna', valor: 'Con collarín de sujeción' },
     { etiqueta: 'Seguridad', valor: 'Pasadores de seguridad' },
     { etiqueta: 'Acabado', valor: 'Ribetes en cian y logo JR grabado en el respaldo' },
-    { etiqueta: 'Bandas elásticas', valor: 'Amarilla de 2 a 7 kg, roja de 7 a 16 kg, negra de 11 a 29 kg y morada de 16 a 39 kg' },
-    { etiqueta: 'Carga estática', valor: 'Soporta {carga} kg de carga estática' },
     // PENDIENTE: datos que aún no están confirmados (no se muestran mientras sean null)
     { etiqueta: 'Medidas', valor: null },
     { etiqueta: 'Peso del producto', valor: null },

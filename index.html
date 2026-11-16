@@ -102,6 +102,7 @@
       <ul class="nav-list">
         <li><a href="#tx11">El banco</a></li>
         <li><a href="#pack">El pack</a></li>
+        <li><a href="#montaje">Montaje</a></li>
         <li><a href="#entrena">Entrena</a></li>
         <li><a href="#marca">La marca</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -518,6 +519,44 @@
 
 
   <!-- =====================================================================
+       8b. MONTAJE — vídeo del montaje en cámara rápida (justo después de lo que
+       viene en la caja, para que se vea sin llegar al final de la página)
+       De fondo, un bucle sin sonido (montaje-loop.mp4) que solo se reproduce en
+       pantalla. El botón "Ver el montaje" lo abre entero y con sonido (montaje.mp4).
+       Sin vídeo, se ve la foto del banco ya montado.
+       ===================================================================== -->
+  <section class="film" id="montaje" aria-labelledby="montaje-titulo">
+    <div class="film-frame">
+      <!-- Fondo: vertical en pantallas verticales y horizontal en las apaisadas -->
+      <picture>
+        <source media="(min-aspect-ratio: 1/1)"
+                srcset="media/video/montaje-poster-1000.jpg 1000w, media/video/montaje-poster-1600.jpg 1600w"
+                sizes="100vw" width="1600" height="900">
+        <img class="film-poster"
+             src="media/video/montaje-poster-vertical.jpg"
+             width="720" height="1080"
+             alt="" loading="lazy" decoding="async">
+      </picture>
+      <video class="film-loop" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
+             data-loop="media/video/montaje-loop.mp4"></video>
+      <div class="film-veil" aria-hidden="true"></div>
+      <div class="film-content container">
+        <p class="eyebrow reveal">Montaje</p>
+        <h2 class="h2 reveal" id="montaje-titulo">Así se monta.</h2>
+        <p class="film-lead reveal" style="--d: 100ms">Manual impreso en español, llave fija y tornillería incluidos.</p>
+        <button class="play reveal" style="--d: 200ms" type="button" aria-haspopup="dialog" data-film-open="montaje" hidden>
+          <span class="play-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="64" height="64" focusable="false"><circle cx="32" cy="32" r="31" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M26 21.5 44 32 26 42.5Z" fill="currentColor"/></svg>
+          </span>
+          <span class="play-label">Ver el montaje</span>
+        </button>
+        <p class="film-note reveal" style="--d: 300ms">Vídeo acelerado</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
        9. LAS BANDAS
        La resistencia de cada banda (en kg) y su orden salen de main.js (DATOS.bandas).
        PENDIENTE: material de las bandas (no se muestra).
@@ -585,7 +624,7 @@
     <div class="container grid specs-layout">
       <header class="section-head specs-head reveal">
         <p class="eyebrow">Especificaciones</p>
-        <h2 class="h2" id="specs-titulo">Soporta <span data-cifra="carga">300</span>&nbsp;kg de carga estática.</h2>
+        <h2 class="h2 h2--side" id="specs-titulo">Soporta <span data-cifra="carga">300</span>&nbsp;kg de carga estática.</h2>
       </header>
       <div class="specs-table-wrap reveal" style="--d: 120ms">
         <table class="spec-table">
@@ -618,7 +657,7 @@
         <p>Coraje para empezar. Disciplina para volver cada día. Superación para ir un poco más allá que ayer. Son las tres palabras que acompañan a JR ATHLETICS y las que vas a encontrar dentro de cada caja.</p>
         <p>Hacemos equipamiento para entrenar con lo esencial, sin rodeos y con cuidado en cada detalle.</p>
         <!-- /BORRADOR -->
-        <p class="closing">Tu esfuerzo hoy, tu mejor versión mañana.</p>
+        <!-- El lema "Tu esfuerzo hoy, tu mejor versión mañana." está en la llamada final (no se repite aquí) -->
       </div>
     </div>
   </section>
@@ -653,6 +692,8 @@
           <summary>¿Es difícil de montar?</summary>
           <div class="faq-answer">
             <p>En la caja tienes el manual de usuario impreso en español, la llave fija y toda la tornillería para el montaje.</p>
+            <!-- Abre el vídeo del montaje (solo aparece si el vídeo está disponible) -->
+            <button class="faq-video" type="button" aria-haspopup="dialog" data-film-open="montaje" hidden>Ver el vídeo del montaje</button>
           </div>
         </details>
         <details class="faq-item">
@@ -668,43 +709,6 @@
             <p>Sí. La estructura es plegable.</p>
           </div>
         </details>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- =====================================================================
-       12b. MONTAJE — vídeo del montaje en cámara rápida
-       De fondo, un bucle sin sonido (montaje-loop.mp4) que solo se reproduce en
-       pantalla. El botón "Ver el montaje" lo abre entero y con sonido (montaje.mp4).
-       Sin vídeo, se ve la foto del banco ya montado.
-       ===================================================================== -->
-  <section class="film" id="montaje" aria-labelledby="montaje-titulo">
-    <div class="film-frame">
-      <!-- Fondo: vertical en pantallas verticales y horizontal en las apaisadas -->
-      <picture>
-        <source media="(min-aspect-ratio: 1/1)"
-                srcset="media/video/montaje-poster-1000.jpg 1000w, media/video/montaje-poster-1600.jpg 1600w"
-                sizes="100vw" width="1600" height="900">
-        <img class="film-poster"
-             src="media/video/montaje-poster-vertical.jpg"
-             width="720" height="1080"
-             alt="" loading="lazy" decoding="async">
-      </picture>
-      <video class="film-loop" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"
-             data-loop="media/video/montaje-loop.mp4"></video>
-      <div class="film-veil" aria-hidden="true"></div>
-      <div class="film-content container">
-        <p class="eyebrow reveal">Montaje</p>
-        <h2 class="h2 reveal" id="montaje-titulo">Así se monta.</h2>
-        <p class="film-lead reveal" style="--d: 100ms">Manual impreso en español, llave fija y tornillería incluidos.</p>
-        <button class="play reveal" style="--d: 200ms" type="button" aria-haspopup="dialog" data-film-open="montaje" hidden>
-          <span class="play-icon" aria-hidden="true">
-            <svg viewBox="0 0 64 64" width="64" height="64" focusable="false"><circle cx="32" cy="32" r="31" fill="none" stroke="currentColor" stroke-width="1.25"/><path d="M26 21.5 44 32 26 42.5Z" fill="currentColor"/></svg>
-          </span>
-          <span class="play-label">Ver el montaje</span>
-        </button>
-        <p class="film-note reveal" style="--d: 300ms">Vídeo acelerado</p>
       </div>
     </div>
   </section>

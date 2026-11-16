@@ -57,7 +57,9 @@ media/video/
                                       vídeo" de la portada)
   [YA] tx11-video-poster.jpg          Su imagen de espera
   [YA] montaje.mp4                    Montaje en cámara rápida, con sonido (botón "Ver el
-                                      montaje", sección Montaje, al final de la página)
+                                      montaje" de la sección Montaje, justo después de
+                                      El pack, y botón en la pregunta "¿Es difícil de
+                                      montar?")
   [YA] montaje-loop.mp4               El montaje de fondo de esa sección (720p, sin sonido)
   [YA] montaje-poster-1600.jpg (y -1000)   Fondo de la sección Montaje en pantallas apaisadas
   [YA] montaje-poster-vertical.jpg    El mismo fondo en pantallas verticales
