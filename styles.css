@@ -847,7 +847,8 @@ a { color: inherit; }
 .versa-track::-webkit-scrollbar { display: none; }
 .versa-card { flex: 0 0 84%; scroll-snap-align: start; }
 @media (min-width: 768px) { .versa-card { flex-basis: 52%; } }
-.versa-img { overflow: hidden; aspect-ratio: 1 / 1; background: var(--bg-raise); }
+/* Fotos de las posiciones en 4:3 (la proporción de las fotos originales): el banco se ve entero */
+.versa-img { overflow: hidden; aspect-ratio: 4 / 3; background: var(--bg-raise); }
 .versa-img img { width: 100%; height: 100%; object-fit: cover; }
 .versa-info { padding-top: 20px; }
 .versa-title {
