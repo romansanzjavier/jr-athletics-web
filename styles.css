@@ -44,11 +44,13 @@
   --bg: #141416;            /* fondo casi negro */
   --bg-raise: #1b1b1e;      /* fondo de huecos de imagen mientras cargan */
   --cream: #f1eee8;         /* texto */
-  --navy: #1c3560;          /* azul marino: pack y cuñas */
-  --cyan: #15a3c7;          /* acento: botones, foco y estados interactivos */
-  --cyan-hover: #34b6d7;
+  --navy: #1c3560;          /* azul marino: color secundario (≈30 %): secciones alternas, pack y cuñas */
+  /* Color de acento LLAMATIVO (≈10 %): solo para lo clave (botones de compra, vídeos,
+     palabras clave) y pequeños detalles. Para cambiarlo, basta con estas dos líneas. */
+  --accent: #ff5a1f;
+  --accent-hover: #ff7a47;
   --wedge-grey: #313237;    /* cuña gris oscuro */
-  --ink: #141416;           /* texto oscuro sobre crema o cian */
+  --ink: #141416;           /* texto oscuro sobre crema o sobre el acento */
 
   --cream-2: rgba(241, 238, 232, 0.72);   /* texto secundario */
   --cream-3: rgba(241, 238, 232, 0.58);   /* texto terciario */
@@ -126,11 +128,11 @@ a { color: inherit; }
 
 [hidden] { display: none !important; }
 
-::selection { background: var(--cyan); color: var(--ink); }
+::selection { background: var(--accent); color: var(--ink); }
 
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -152,7 +154,7 @@ a { color: inherit; }
   top: 12px; left: 12px;
   z-index: 200;
   padding: 14px 20px;
-  background: var(--cyan);
+  background: var(--accent);
   color: var(--ink);
   font-weight: 600;
   font-size: 0.875rem;
@@ -197,7 +199,7 @@ a { color: inherit; }
   flex: none;
   width: 28px;
   height: 1px;
-  background: var(--cyan);
+  background: var(--accent);
 }
 
 .h2 {
@@ -259,8 +261,8 @@ a { color: inherit; }
   cursor: pointer;
   transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
-.btn--cyan { background: var(--cyan); color: var(--ink); }
-.btn--cyan:hover { background: var(--cyan-hover); }
+.btn--accent { background: var(--accent); color: var(--ink); }
+.btn--accent:hover { background: var(--accent-hover); }
 .btn--ghost { border-color: rgba(241, 238, 232, 0.6); color: var(--cream); }
 .btn--ghost:hover { border-color: var(--cream); background: rgba(241, 238, 232, 0.08); }
 .btn--sm { padding: 0 1.25rem; }
@@ -451,7 +453,7 @@ a { color: inherit; }
   text-decoration: none;
   transition: color 0.25s var(--ease);
 }
-.nav-list a:hover { color: var(--cyan); }
+.nav-list a:hover { color: var(--accent); }
 
 .nav-extra { display: flex; flex-direction: column; gap: 24px; align-items: stretch; }
 .nav-motto {
@@ -463,7 +465,7 @@ a { color: inherit; }
   color: var(--cream-2);
   text-align: center;
 }
-.nav-motto span { color: var(--cyan); margin-inline: 0.5em; }
+.nav-motto span { color: var(--accent); margin-inline: 0.5em; }
 
 @media (min-width: 1024px) {
   .menu-toggle { display: none; }
@@ -491,7 +493,7 @@ a { color: inherit; }
     position: absolute;
     left: 0; right: 0.2em; bottom: 12px;
     height: 1px;
-    background: var(--cyan);
+    background: var(--accent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.35s var(--ease);
@@ -524,6 +526,34 @@ a { color: inherit; }
 
 
 /* 8. SECCIONES ------------------------------------------------------------- */
+
+/* --- Regla de color 60–30–10 ---
+   60 % color base (--bg) en casi todas las secciones, 30 % azul marino en las
+   secciones alternas (Detalles, El pack, Especificaciones y Preguntas) y 10 % color
+   de acento llamativo solo en lo clave: botones de compra, vídeos y palabras clave. */
+.details, .specs, .faq { background: var(--navy); }
+.details .eyebrow, .specs .eyebrow, .faq .eyebrow { color: rgba(241, 238, 232, 0.8); }
+.details .detail figcaption { color: rgba(241, 238, 232, 0.8); }
+/* Palabra clave en el color de acento (una por titular, como mucho) */
+.hl { color: var(--accent); }
+
+/* Botones de los vídeos: círculo relleno con el color de acento */
+.hero-play svg circle,
+.play svg circle { fill: var(--accent); stroke: var(--accent); }
+.hero-play svg path,
+.play svg path { fill: var(--ink); }
+
+/* Flecha ↗ en los botones de compra: se abre Amazon en otra pestaña */
+.btn[data-amazon]::after {
+  content: "";
+  flex: none;
+  width: 11px;
+  height: 11px;
+  margin-left: 10px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 10 10 2M3.5 2H10v6.5' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 10 10 2M3.5 2H10v6.5' fill='none' stroke='%23000' stroke-width='1.6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
 
 /* --- Cuñas de marca (solo portada y llamada final) --- */
 .wedge {
@@ -696,7 +726,7 @@ a { color: inherit; }
 }
 .hero-play svg { width: 40px; height: 40px; transition: transform 0.3s var(--ease); }
 .hero-play:hover,
-.hero-play:focus-visible { color: var(--cyan); }
+.hero-play:focus-visible { color: var(--accent); }
 .hero-play:hover svg { transform: scale(1.06); }
 @media (min-aspect-ratio: 1/1) and (max-height: 599px) {
   .hero-play { padding-block: 0; }
@@ -720,7 +750,7 @@ a { color: inherit; }
   text-transform: uppercase;
   animation: fade-up 900ms var(--ease) 200ms both;
 }
-.motto-sep { color: var(--cyan); margin-inline: 0.7em; }
+.motto-sep { color: var(--accent); margin-inline: 0.7em; }
 @media (min-width: 480px) {
   .motto { letter-spacing: 0.28em; }
   .motto-sep { margin-inline: 1em; }
@@ -752,7 +782,7 @@ a { color: inherit; }
   left: 0; top: 0;
   width: 1px;
   height: 18px;
-  background: var(--cyan);
+  background: var(--accent);
   animation: cue 2.4s var(--ease) infinite;
 }
 
@@ -914,7 +944,7 @@ a { color: inherit; }
   }
   .versa-tab:hover { color: var(--cream); }
   .versa-tab[aria-pressed="true"] { color: var(--cream); }
-  .versa-tab[aria-pressed="true"] .num { color: var(--cyan); }
+  .versa-tab[aria-pressed="true"] .num { color: var(--accent); }
 
   .versa-stage { grid-column: 6 / -1; margin-inline: 0; }
   .versa-track { display: grid; overflow: visible; padding: 0; }
@@ -1006,7 +1036,7 @@ a { color: inherit; }
   transition: color 0.3s var(--ease);
 }
 .play svg { width: 72px; height: 72px; }
-.play:hover { color: var(--cyan); }
+.play:hover { color: var(--accent); }
 
 .film-modal {
   width: min(100% - 32px, 1200px);
@@ -1034,7 +1064,7 @@ a { color: inherit; }
   border: 0;
   cursor: pointer;
 }
-.film-close:hover { color: var(--cyan); }
+.film-close:hover { color: var(--accent); }
 .film-player { width: 100%; background: #000; }
 .film-player video,
 .film-player iframe {
@@ -1100,7 +1130,7 @@ a { color: inherit; }
   position: absolute;
   inset: 0 0 auto 0;
   height: 4px;
-  background: var(--cyan);
+  background: var(--accent);
 }
 .pack .eyebrow { color: rgba(241, 238, 232, 0.8); }
 .pack-layout { row-gap: 40px; }
@@ -1330,12 +1360,12 @@ a { color: inherit; }
     linear-gradient(currentColor, currentColor) center / 1.5px 100% no-repeat;
   transition: background-size 0.3s var(--ease), color 0.3s var(--ease);
 }
-.faq-item summary:hover::after { color: var(--cyan); }
+.faq-item summary:hover::after { color: var(--accent); }
 .faq-item[open] > summary::after { background-size: 100% 1.5px, 1.5px 0; }
 .faq-answer { padding: 0 0 28px; color: var(--cream-2); max-width: 60ch; }
 .faq-answer p:last-child { margin-bottom: 0; }
 .faq-answer a { color: var(--cream); text-underline-offset: 4px; }
-.faq-answer a:hover { color: var(--cyan); }
+.faq-answer a:hover { color: var(--accent); }
 /* Botón "Ver el vídeo del montaje" dentro de la respuesta: parece un enlace */
 .faq-video {
   display: inline-flex;
@@ -1360,9 +1390,9 @@ a { color: inherit; }
   height: 0;
   border-style: solid;
   border-width: 6px 0 6px 10px;
-  border-color: transparent transparent transparent var(--cyan);
+  border-color: transparent transparent transparent var(--accent);
 }
-.faq-video:hover { color: var(--cyan); }
+.faq-video:hover { color: var(--accent); }
 .faq-pack { list-style: none; }
 .faq-pack li { position: relative; padding-left: 22px; }
 .faq-pack li + li { margin-top: 6px; }
@@ -1371,7 +1401,7 @@ a { color: inherit; }
   position: absolute;
   left: 0; top: 0.8em;
   width: 10px; height: 1px;
-  background: var(--cyan);
+  background: var(--accent);
 }
 
 @supports (interpolate-size: allow-keywords) {
@@ -1438,7 +1468,7 @@ a { color: inherit; }
   text-decoration: none;
   transition: color 0.3s var(--ease);
 }
-.contact-link:hover { color: var(--cyan); }
+.contact-link:hover { color: var(--accent); }
 .contact-link svg { flex: none; }
 .contact-note { margin: 0; max-width: 34ch; color: var(--cream-2); }
 
@@ -1468,10 +1498,10 @@ a { color: inherit; }
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
 }
-.footer-links a:hover { text-decoration-color: var(--cyan); text-decoration-thickness: 2px; }
-/* Foco sobre fondo claro: anillo oscuro + cian para que se vea siempre */
+.footer-links a:hover { text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+/* Foco sobre fondo claro: anillo oscuro + acento para que se vea siempre */
 .site-footer :focus-visible {
-  outline: 2px solid var(--cyan);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
   box-shadow: 0 0 0 4px var(--ink);
 }
@@ -1521,7 +1551,7 @@ a { color: inherit; }
   text-transform: uppercase;
   text-decoration: none;
 }
-.page-simple .header-back:hover { color: var(--cyan); }
+.page-simple .header-back:hover { color: var(--accent); }
 
 .legal {
   padding: calc(var(--header-h) + clamp(56px, 8vw, 120px)) 0 var(--section-y);
@@ -1545,7 +1575,7 @@ a { color: inherit; }
 .legal ul { padding-left: 1.2em; }
 .legal li + li { margin-top: 6px; }
 .legal a { color: var(--cream); text-underline-offset: 4px; }
-.legal a:hover { color: var(--cyan); }
+.legal a:hover { color: var(--accent); }
 .legal dl {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
