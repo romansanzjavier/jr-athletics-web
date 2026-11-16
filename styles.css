@@ -818,7 +818,14 @@ a { color: inherit; }
 /* --- 4. Detalles --- */
 .details-grid { list-style: none; row-gap: 40px; }
 .detail { grid-column: span 2; }
-@media (min-width: 1024px) { .detail { grid-column: span 3; } }
+/* Cinco detalles: en móvil y tableta van de dos en dos y el quinto se centra;
+   en ordenador, los cinco en una fila */
+.detail:nth-child(5):last-child { grid-column: 2 / span 2; }
+@media (min-width: 1024px) {
+  .details-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .detail,
+  .detail:nth-child(5):last-child { grid-column: auto; }
+}
 .detail-img { overflow: hidden; aspect-ratio: 4 / 5; background: var(--bg-raise); }
 .detail-img img {
   width: 100%;
@@ -1133,9 +1140,16 @@ a { color: inherit; }
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
+/* Foto real de la banda junto a los colores y los kilos */
+.bands-photo { grid-column: 1 / -1; margin: 0; overflow: hidden; background: var(--bg-raise); }
+.bands-photo img { width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; }
+@media (min-width: 600px) and (max-width: 1023px) {
+  .bands-photo { grid-column: 1 / span 3; }
+}
 @media (min-width: 1024px) {
-  .bands-head { grid-column: 1 / span 5; }
-  .swatches { grid-column: 7 / -1; gap: 16px; }
+  .bands-photo { grid-column: 1 / span 5; grid-row: 1 / span 2; }
+  .bands-head { grid-column: 7 / -1; grid-row: 1; align-self: start; }
+  .swatches { grid-column: 7 / -1; grid-row: 2; align-self: end; gap: 16px; }
 }
 .swatch-chip {
   display: block;
